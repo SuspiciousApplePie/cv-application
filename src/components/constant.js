@@ -1,5 +1,6 @@
-const general = {
-  HEADER: "General Information",
+const formHeader = {
+  GENERAL: "General Information",
+  EDUC: "Educational Experience",
 };
 
 const wrapper = {
@@ -8,4 +9,4 @@ const wrapper = {
   BTN_CONTROL: "btn-control",
 };
 
-export { general, wrapper };
+export { formHeader, wrapper };

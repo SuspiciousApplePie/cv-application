@@ -1,24 +1,7 @@
-import { general, wrapper } from "./constant";
+import { formHeader, wrapper } from "./constant.js";
 import { useState } from "react";
 
 function General() {
-  return (
-    <div className={wrapper.GENERAL}>
-      <GeneralHeader />
-      <GeneralForm />
-    </div>
-  );
-}
-
-function GeneralHeader() {
-  return (
-    <>
-      <h2>{general.HEADER}</h2>
-    </>
-  );
-}
-
-function GeneralForm() {
   const [genInfo, setGenInfo] = useState({
     fname: "",
     lname: "",
@@ -64,8 +47,9 @@ function GeneralForm() {
   }
 
   return (
-    <div>
-      <form action="" type="post">
+    <div className={wrapper.GENERAL}>
+      <h2>{formHeader.GENERAL}</h2>
+      <form action="" method="post">
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.FNAME}>First Name</label>
           <input
