@@ -9,4 +9,12 @@ const wrapper = {
   BTN_CONTROL: "btn-control",
 };
 
-export { formHeader, wrapper };
+const educLevel = {
+  SELECT: "",
+  PRIMARY: "primary",
+  MIDDLE: "middle",
+  HIGH_SCHOOL: "high-school",
+  BACHELOR: "bachelor",
+};
+
+export { formHeader, wrapper, educLevel };
