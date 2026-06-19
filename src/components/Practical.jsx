@@ -59,6 +59,23 @@ function Practical() {
     setPracticalExp(newJob);
   }
 
+  function deleteJobResponsibilities(practicalExpId, jobResponsibilityId) {
+    const newJob = practicalExp.map((practicalExpItem) => {
+      if (practicalExpId === practicalExpItem.id) {
+        const newJobResponsibility = practicalExpItem.jobResponsibility.filter(
+          (job) => job.id !== jobResponsibilityId,
+        );
+        return {
+          ...practicalExpItem,
+          jobResponsibility: newJobResponsibility,
+        };
+      } else {
+        return practicalExpItem;
+      }
+    });
+    setPracticalExp(newJob);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -81,7 +98,14 @@ function Practical() {
   function renderJobResponsibilities(practicalExpItem) {
     if (practicalExpItem.jobResponsibility.length) {
       return practicalExpItem.jobResponsibility.map((job) => {
-        return <JobResponsibilities key={job.id} job={job} />;
+        return (
+          <JobResponsibilities
+            key={job.id}
+            practicalExpId={practicalExpItem.id}
+            job={job}
+            deleteJobResponsibilities={deleteJobResponsibilities}
+          />
+        );
       });
     } else {
       return <p>No Job Responsibilities listed</p>;
@@ -148,7 +172,11 @@ function PracticalForm({
   );
 }
 
-function JobResponsibilities({ job }) {
+function JobResponsibilities({
+  practicalExpId,
+  job,
+  deleteJobResponsibilities,
+}) {
   return (
     <div className={wrapper.JOB_WRAPPER}>
       <div className={wrapper.FORM_CONTROL}>
@@ -156,7 +184,14 @@ function JobResponsibilities({ job }) {
         <input type="text" name="" id={`job-res-${job.id}`} />
       </div>
       <div className={wrapper.BTN_CONTROL}>
-        <button type="button">Delete</button>
+        <button
+          type="button"
+          onClick={() => {
+            deleteJobResponsibilities(practicalExpId, job.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
