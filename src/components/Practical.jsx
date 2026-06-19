@@ -8,6 +8,11 @@ function PracticalExp(companyName = "") {
 function Practical() {
   const [practicalExp, setPracticalExp] = useState([]);
 
+  function addPracticalExp() {
+    const newPracticalExp = [...practicalExp, PracticalExp()];
+    setPracticalExp(newPracticalExp);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
