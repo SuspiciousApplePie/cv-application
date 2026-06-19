@@ -13,6 +13,16 @@ function Practical() {
     setPracticalExp(newPracticalExp);
   }
 
+  function editCompanyName(newCompanyName, id) {
+    const updatedCompanyName = practicalExp.map((practicalExpItem) => {
+      return practicalExpItem.id === id
+        ? { ...practicalExpItem, companyName: newCompanyName }
+        : practicalExpItem;
+    });
+
+    setPracticalExp(updatedCompanyName);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -20,6 +30,7 @@ function Practical() {
           <PracticalForm
             key={practicalExpItem.id}
             practicalExp={practicalExpItem}
+            editCompanyName={editCompanyName}
           />
         );
       });
@@ -38,7 +49,7 @@ function Practical() {
   );
 }
 
-function PracticalForm({ practicalExp }) {
+function PracticalForm({ practicalExp, editCompanyName }) {
   return (
     <form action="" method="post">
       <div className={wrapper.FORM_CONTROL}>
@@ -48,6 +59,9 @@ function PracticalForm({ practicalExp }) {
           name=""
           id={`com-name-${practicalExp.id}`}
           value={practicalExp.companyName}
+          onChange={(e) => {
+            editCompanyName(e.target.value, practicalExp.id);
+          }}
         />
       </div>
 
