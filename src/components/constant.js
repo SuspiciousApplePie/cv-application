@@ -1,10 +1,12 @@
 const formHeader = {
   GENERAL: "General Information",
   EDUC: "Educational Experience",
+  PRAC: "Practical Experience",
 };
 
 const wrapper = {
   GENERAL: "general-wrapper",
+  PRACTICAL: "practical-wrapper",
   FORM_CONTROL: "form-control",
   BTN_CONTROL: "btn-control",
 };
