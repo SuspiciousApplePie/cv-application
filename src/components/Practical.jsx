@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { wrapper, formHeader } from "./constant.js";
 
-function PracticalExp(companyName = "") {
-  return { id: crypto.randomUUID(), companyName };
+function PracticalExp(companyName = "", position = "") {
+  return { id: crypto.randomUUID(), companyName, position };
 }
 
 function Practical() {
@@ -38,16 +38,26 @@ function Practical() {
   );
 }
 
-function PracticalForm(practicalExp) {
+function PracticalForm({ practicalExp }) {
   return (
     <form action="" method="post">
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`name-${practicalExp.id}`}>Company Name</label>
+        <label htmlFor={`com-name-${practicalExp.id}`}>Company Name</label>
         <input
           type="text"
           name=""
-          id={`name-${practicalExp.id}`}
+          id={`com-name-${practicalExp.id}`}
           value={practicalExp.companyName}
+        />
+      </div>
+
+      <div className={wrapper.FORM_CONTROL}>
+        <label htmlFor={`pos-title-${practicalExp.id}`}>Position Title</label>
+        <input
+          type="text"
+          name=""
+          id={`pos-title-${practicalExp.id}`}
+          value={practicalExp.position}
         />
       </div>
     </form>
