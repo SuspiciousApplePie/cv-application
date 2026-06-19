@@ -9,6 +9,7 @@ const wrapper = {
   PRACTICAL: "practical-wrapper",
   FORM_CONTROL: "form-control",
   BTN_CONTROL: "btn-control",
+  JOB_WRAPPER: "job-res-wrapper",
 };
 
 const educLevel = {

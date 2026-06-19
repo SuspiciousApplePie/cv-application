@@ -1,8 +1,21 @@
 import { useState } from "react";
 import { wrapper, formHeader } from "./constant.js";
 
-function PracticalExp(companyName = "", positionTitle = "") {
-  return { id: crypto.randomUUID(), companyName, positionTitle };
+function PracticalExp(
+  companyName = "",
+  positionTitle = "",
+  jobResponsibility = [],
+) {
+  return {
+    id: crypto.randomUUID(),
+    companyName,
+    positionTitle,
+    jobResponsibility,
+  };
+}
+
+function JobResponsibility(job = "") {
+  return { id: crypto.randomUUID, job };
 }
 
 function Practical() {
@@ -42,6 +55,7 @@ function Practical() {
             practicalExp={practicalExpItem}
             editCompanyName={editCompanyName}
             editPositionTitle={editPositionTitle}
+            renderJobResponsibilities={renderJobResponsibilities}
           />
         );
       });
@@ -49,6 +63,17 @@ function Practical() {
       return <p>No Practical Experience.</p>;
     }
   }
+
+  function renderJobResponsibilities(practicalExpItem) {
+    if (practicalExpItem.jobResponsibility.length) {
+      return practicalExpItem.jobResponsibility.map((job) => {
+        return <JobResponsibilities key={job.id} job={job} />;
+      });
+    } else {
+      return <p>No Job Responsibilities listed</p>;
+    }
+  }
+
   return (
     <div className={wrapper.PRACTICAL}>
       <h2>{formHeader.PRAC}</h2>
@@ -60,7 +85,12 @@ function Practical() {
   );
 }
 
-function PracticalForm({ practicalExp, editCompanyName, editPositionTitle }) {
+function PracticalForm({
+  practicalExp,
+  editCompanyName,
+  editPositionTitle,
+  renderJobResponsibilities,
+}) {
   return (
     <form action="" method="post">
       <div className={wrapper.FORM_CONTROL}>
@@ -88,7 +118,25 @@ function PracticalForm({ practicalExp, editCompanyName, editPositionTitle }) {
           }}
         />
       </div>
+      <div className={wrapper.BTN_CONTROL}>
+        <button type="button">Add</button>
+      </div>
+      <>{renderJobResponsibilities(practicalExp)}</>
     </form>
+  );
+}
+
+function JobResponsibilities({ job }) {
+  return (
+    <div className={wrapper.JOB_WRAPPER}>
+      <div className={wrapper.FORM_CONTROL}>
+        <label htmlFor={`job-res-${job.id}`}>Job Responsibilities</label>
+        <input type="text" name="" id={`job-res-${job.id}`} />
+      </div>
+      <div className={wrapper.BTN_CONTROL}>
+        <button type="button">Delete</button>
+      </div>
+    </div>
   );
 }
 
