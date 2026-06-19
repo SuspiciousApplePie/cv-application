@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { wrapper, formHeader } from "./constant.js";
 
-function PracticalExp(companyName = "", position = "") {
-  return { id: crypto.randomUUID(), companyName, position };
+function PracticalExp(companyName = "", positionTitle = "") {
+  return { id: crypto.randomUUID(), companyName, positionTitle };
 }
 
 function Practical() {
@@ -23,6 +23,16 @@ function Practical() {
     setPracticalExp(updatedCompanyName);
   }
 
+  function editPositionTitle(newPositionTitle, id) {
+    const updatedPositionedTitle = practicalExp.map((practicalExpItem) => {
+      return practicalExpItem.id === id
+        ? { ...practicalExpItem, positionTitle: newPositionTitle }
+        : practicalExpItem;
+    });
+
+    setPracticalExp(updatedPositionedTitle);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -31,6 +41,7 @@ function Practical() {
             key={practicalExpItem.id}
             practicalExp={practicalExpItem}
             editCompanyName={editCompanyName}
+            editPositionTitle={editPositionTitle}
           />
         );
       });
@@ -49,7 +60,7 @@ function Practical() {
   );
 }
 
-function PracticalForm({ practicalExp, editCompanyName }) {
+function PracticalForm({ practicalExp, editCompanyName, editPositionTitle }) {
   return (
     <form action="" method="post">
       <div className={wrapper.FORM_CONTROL}>
@@ -71,7 +82,10 @@ function PracticalForm({ practicalExp, editCompanyName }) {
           type="text"
           name=""
           id={`pos-title-${practicalExp.id}`}
-          value={practicalExp.position}
+          value={practicalExp.positionTitle}
+          onChange={(e) => {
+            editPositionTitle(e.target.value, practicalExp.id);
+          }}
         />
       </div>
     </form>
