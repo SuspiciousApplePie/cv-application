@@ -15,7 +15,7 @@ function PracticalExp(
 }
 
 function JobResponsibility(job = "") {
-  return { id: crypto.randomUUID, job };
+  return { id: crypto.randomUUID(), job };
 }
 
 function Practical() {
@@ -46,6 +46,19 @@ function Practical() {
     setPracticalExp(updatedPositionedTitle);
   }
 
+  function addJobResponsibilities(practicalExpItem) {
+    const newJob = practicalExp.map((item) => {
+      return item.id === practicalExpItem.id
+        ? {
+            ...item,
+            jobResponsibility: [...item.jobResponsibility, JobResponsibility()],
+          }
+        : item;
+    });
+
+    setPracticalExp(newJob);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -56,6 +69,7 @@ function Practical() {
             editCompanyName={editCompanyName}
             editPositionTitle={editPositionTitle}
             renderJobResponsibilities={renderJobResponsibilities}
+            addJobResponsibilities={addJobResponsibilities}
           />
         );
       });
@@ -90,6 +104,7 @@ function PracticalForm({
   editCompanyName,
   editPositionTitle,
   renderJobResponsibilities,
+  addJobResponsibilities,
 }) {
   return (
     <form action="" method="post">
@@ -119,9 +134,16 @@ function PracticalForm({
         />
       </div>
       <div className={wrapper.BTN_CONTROL}>
-        <button type="button">Add</button>
+        <button
+          type="button"
+          onClick={() => {
+            addJobResponsibilities(practicalExp);
+          }}
+        >
+          Add
+        </button>
       </div>
-      <>{renderJobResponsibilities(practicalExp)}</>
+      {renderJobResponsibilities(practicalExp)}
     </form>
   );
 }
