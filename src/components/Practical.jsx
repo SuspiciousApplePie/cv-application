@@ -14,8 +14,8 @@ function PracticalExp(
   };
 }
 
-function JobResponsibility(job = "") {
-  return { id: crypto.randomUUID(), job };
+function JobResponsibility(jobDesc = "") {
+  return { id: crypto.randomUUID(), jobDesc };
 }
 
 function Practical() {
@@ -76,6 +76,28 @@ function Practical() {
     setPracticalExp(newJob);
   }
 
+  function editJobResponsibilities(
+    practicalExpId,
+    jobResponsibilityId,
+    newJobDescription,
+  ) {
+    const newJob = practicalExp.map((practicalExpItem) => {
+      if (practicalExpItem.id === practicalExpId) {
+        const newJobResponsibility = practicalExpItem.jobResponsibility.map(
+          (job) => {
+            return job.id === jobResponsibilityId
+              ? { ...job, jobDesc: newJobDescription }
+              : job;
+          },
+        );
+        return { ...practicalExpItem, jobResponsibility: newJobResponsibility };
+      } else {
+        return practicalExpItem;
+      }
+    });
+    setPracticalExp(newJob);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -104,6 +126,7 @@ function Practical() {
             practicalExpId={practicalExpItem.id}
             job={job}
             deleteJobResponsibilities={deleteJobResponsibilities}
+            editJobResponsibilities={editJobResponsibilities}
           />
         );
       });
@@ -176,12 +199,22 @@ function JobResponsibilities({
   practicalExpId,
   job,
   deleteJobResponsibilities,
+  editJobResponsibilities,
 }) {
   return (
     <div className={wrapper.JOB_WRAPPER}>
       <div className={wrapper.FORM_CONTROL}>
         <label htmlFor={`job-res-${job.id}`}>Job Responsibilities</label>
-        <input type="text" name="" id={`job-res-${job.id}`} />
+        <input
+          type="text"
+          name=""
+          id={`job-res-${job.id}`}
+          value={job.jobDesc}
+          onChange={(e) => {
+            editJobResponsibilities(practicalExpId, job.id, e.target.value);
+          }}
+          required
+        />
       </div>
       <div className={wrapper.BTN_CONTROL}>
         <button
