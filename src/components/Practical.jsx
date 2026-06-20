@@ -7,6 +7,7 @@ function PracticalExp(
   positionTitle = "",
   jobResponsibility = [],
   startDate = "",
+  endDate = "",
 ) {
   return {
     id: crypto.randomUUID(),
@@ -14,6 +15,7 @@ function PracticalExp(
     positionTitle,
     jobResponsibility,
     startDate,
+    endDate,
   };
 }
 
@@ -118,6 +120,22 @@ function Practical() {
     setPracticalExp(updatedStartDate);
   }
 
+  function editEndDate(newEndDate, id) {
+    const updatedEndDate = practicalExp.map((practicalExpItem) => {
+      if (practicalExpItem.id === id) {
+        return newEndDate !== ""
+          ? {
+              ...practicalExpItem,
+              endDate: parse(newEndDate, "yyyy-MM", new Date()),
+            }
+          : { ...practicalExpItem, endDate: "" };
+      } else {
+        practicalExpItem;
+      }
+    });
+    setPracticalExp(updatedEndDate);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -130,6 +148,7 @@ function Practical() {
             renderJobResponsibilities={renderJobResponsibilities}
             addJobResponsibilities={addJobResponsibilities}
             editStartDate={editStartDate}
+            editEndDate={editEndDate}
           />
         );
       });
@@ -174,6 +193,7 @@ function PracticalForm({
   renderJobResponsibilities,
   addJobResponsibilities,
   editStartDate,
+  editEndDate,
 }) {
   return (
     <form action="" method="post">
@@ -226,6 +246,21 @@ function PracticalForm({
           }
           onChange={(e) => {
             editStartDate(e.target.value, practicalExp.id);
+          }}
+          required
+        />
+        <label htmlFor={`start-${practicalExp.id}`}>Start Date:</label>
+        <input
+          type="month"
+          name=""
+          id={`start-${practicalExp.id}`}
+          value={
+            practicalExp.endDate !== ""
+              ? format(practicalExp.endDate, "yyyy-MM")
+              : ""
+          }
+          onChange={(e) => {
+            editEndDate(e.target.value, practicalExp.id);
           }}
           required
         />
