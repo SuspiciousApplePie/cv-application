@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { wrapper, formHeader } from "./constant.js";
+import { format, parse } from "date-fns";
 
 function PracticalExp(
   companyName = "",
   positionTitle = "",
   jobResponsibility = [],
+  startDate = "",
 ) {
   return {
     id: crypto.randomUUID(),
     companyName,
     positionTitle,
     jobResponsibility,
+    startDate,
   };
 }
 
@@ -98,6 +101,23 @@ function Practical() {
     setPracticalExp(newJob);
   }
 
+  function editStartDate(newStartDate, id) {
+    const updatedStartDate = practicalExp.map((practicalExpItem) => {
+      if (practicalExpItem.id === id) {
+        return newStartDate !== ""
+          ? {
+              ...practicalExpItem,
+              startDate: parse(newStartDate, "yyyy-MM", new Date()),
+            }
+          : { ...practicalExpItem, startDate: "" };
+      } else {
+        practicalExpItem;
+      }
+    });
+
+    setPracticalExp(updatedStartDate);
+  }
+
   function renderPracticalExp() {
     if (practicalExp.length) {
       return practicalExp.map((practicalExpItem) => {
@@ -109,6 +129,7 @@ function Practical() {
             editPositionTitle={editPositionTitle}
             renderJobResponsibilities={renderJobResponsibilities}
             addJobResponsibilities={addJobResponsibilities}
+            editStartDate={editStartDate}
           />
         );
       });
@@ -152,6 +173,7 @@ function PracticalForm({
   editPositionTitle,
   renderJobResponsibilities,
   addJobResponsibilities,
+  editStartDate,
 }) {
   return (
     <form action="" method="post">
@@ -191,6 +213,23 @@ function PracticalForm({
         </button>
       </div>
       {renderJobResponsibilities(practicalExp)}
+      <div className={wrapper.BTN_CONTROL}>
+        <label htmlFor={`start-${practicalExp.id}`}>Start Date:</label>
+        <input
+          type="month"
+          name=""
+          id={`start-${practicalExp.id}`}
+          value={
+            practicalExp.startDate !== ""
+              ? format(practicalExp.startDate, "yyyy-MM")
+              : ""
+          }
+          onChange={(e) => {
+            editStartDate(e.target.value, practicalExp.id);
+          }}
+          required
+        />
+      </div>
     </form>
   );
 }
