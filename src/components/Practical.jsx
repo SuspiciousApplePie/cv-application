@@ -158,6 +158,7 @@ function Practical() {
             editStartDate={editStartDate}
             editEndDate={editEndDate}
             deletePracticalExp={deletePracticalExp}
+            isEditable={isEditable}
           />
         );
       });
@@ -176,6 +177,7 @@ function Practical() {
             job={job}
             deleteJobResponsibilities={deleteJobResponsibilities}
             editJobResponsibilities={editJobResponsibilities}
+            isEditable={isEditable}
           />
         );
       });
@@ -203,10 +205,10 @@ function Practical() {
           </button>
         )}
         {isEditable && (
-      <button type="button" onClick={addPracticalExp}>
-        Add
-      </button>
-)}
+          <button type="button" onClick={addPracticalExp}>
+            Add
+          </button>
+        )}
         {isEditable && (
           <button type="submit" onClick={savePracticalForm}>
             Save
@@ -226,6 +228,7 @@ function PracticalForm({
   editStartDate,
   editEndDate,
   deletePracticalExp,
+  isEditable,
 }) {
   return (
     <form action="" method="post">
@@ -239,6 +242,7 @@ function PracticalForm({
           onChange={(e) => {
             editCompanyName(e.target.value, practicalExp.id);
           }}
+          readOnly={!isEditable}
         />
       </div>
 
@@ -252,18 +256,21 @@ function PracticalForm({
           onChange={(e) => {
             editPositionTitle(e.target.value, practicalExp.id);
           }}
+          readOnly={!isEditable}
         />
       </div>
-      <div className={wrapper.BTN_CONTROL}>
-        <button
-          type="button"
-          onClick={() => {
-            addJobResponsibilities(practicalExp);
-          }}
-        >
-          Add
-        </button>
-      </div>
+      {isEditable && (
+        <div className={wrapper.BTN_CONTROL}>
+          <button
+            type="button"
+            onClick={() => {
+              addJobResponsibilities(practicalExp);
+            }}
+          >
+            Add
+          </button>
+        </div>
+      )}
       {renderJobResponsibilities(practicalExp)}
       <div className={wrapper.BTN_CONTROL}>
         <label htmlFor={`start-${practicalExp.id}`}>Start Date:</label>
@@ -280,6 +287,7 @@ function PracticalForm({
             editStartDate(e.target.value, practicalExp.id);
           }}
           required
+          readOnly={!isEditable}
         />
         <label htmlFor={`end-${practicalExp.id}`}>Start Date:</label>
         <input
@@ -295,18 +303,21 @@ function PracticalForm({
             editEndDate(e.target.value, practicalExp.id);
           }}
           required
+          readOnly={!isEditable}
         />
       </div>
-      <div className={wrapper.BTN_CONTROL}>
-        <button
-          type="button"
-          onClick={() => {
-            deletePracticalExp(practicalExp.id);
-          }}
-        >
-          Delete
-        </button>
-      </div>
+      {isEditable && (
+        <div className={wrapper.BTN_CONTROL}>
+          <button
+            type="button"
+            onClick={() => {
+              deletePracticalExp(practicalExp.id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </form>
   );
 }
@@ -316,6 +327,7 @@ function JobResponsibilities({
   job,
   deleteJobResponsibilities,
   editJobResponsibilities,
+  isEditable,
 }) {
   return (
     <div className={wrapper.JOB_WRAPPER}>
@@ -330,18 +342,21 @@ function JobResponsibilities({
             editJobResponsibilities(practicalExpId, job.id, e.target.value);
           }}
           required
+          readOnly={!isEditable}
         />
       </div>
-      <div className={wrapper.BTN_CONTROL}>
-        <button
-          type="button"
-          onClick={() => {
-            deleteJobResponsibilities(practicalExpId, job.id);
-          }}
-        >
-          Delete
-        </button>
-      </div>
+      {isEditable && (
+        <div className={wrapper.BTN_CONTROL}>
+          <button
+            type="button"
+            onClick={() => {
+              deleteJobResponsibilities(practicalExpId, job.id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 }
