@@ -188,11 +188,21 @@ function Practical() {
     setIsEditable(false);
   }
 
+  function editPracticalForm() {
+    setIsEditable(true);
+  }
 
   return (
     <div className={wrapper.PRACTICAL}>
       <h2>{formHeader.PRAC}</h2>
       {renderPracticalExp()}
+      <div className={wrapper.BTN_CONTROL}>
+        {!isEditable && (
+          <button type="button" onClick={editPracticalForm}>
+            Edit
+          </button>
+        )}
+        {isEditable && (
       <button type="button" onClick={addPracticalExp}>
         Add
       </button>
