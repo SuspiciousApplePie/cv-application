@@ -31,6 +31,13 @@ function Practical() {
     setPracticalExp(newPracticalExp);
   }
 
+  function deletePracticalExp(practicalExpId) {
+    const newPracticalExp = practicalExp.filter(
+      (practicalExpItem) => practicalExpItem.id !== practicalExpId,
+    );
+    setPracticalExp(newPracticalExp);
+  }
+
   function editCompanyName(newCompanyName, id) {
     const updatedCompanyName = practicalExp.map((practicalExpItem) => {
       return practicalExpItem.id === id
@@ -149,6 +156,7 @@ function Practical() {
             addJobResponsibilities={addJobResponsibilities}
             editStartDate={editStartDate}
             editEndDate={editEndDate}
+            deletePracticalExp={deletePracticalExp}
           />
         );
       });
@@ -194,6 +202,7 @@ function PracticalForm({
   addJobResponsibilities,
   editStartDate,
   editEndDate,
+  deletePracticalExp,
 }) {
   return (
     <form action="" method="post">
@@ -264,6 +273,16 @@ function PracticalForm({
           }}
           required
         />
+      </div>
+      <div className={wrapper.BTN_CONTROL}>
+        <button
+          type="button"
+          onClick={() => {
+            deletePracticalExp(practicalExp.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </form>
   );
