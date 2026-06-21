@@ -121,7 +121,7 @@ function Practical() {
             }
           : { ...practicalExpItem, startDate: "" };
       } else {
-        practicalExpItem;
+        return practicalExpItem;
       }
     });
 
@@ -138,7 +138,7 @@ function Practical() {
             }
           : { ...practicalExpItem, endDate: "" };
       } else {
-        practicalExpItem;
+        return practicalExpItem;
       }
     });
     setPracticalExp(updatedEndDate);
