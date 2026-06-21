@@ -238,7 +238,7 @@ function PracticalForm({
         <input
           type="month"
           name=""
-          id={`start-${practicalExp.id}`}
+          id={`end-${practicalExp.id}`}
           value={
             practicalExp.startDate !== ""
               ? format(practicalExp.startDate, "yyyy-MM")
@@ -249,7 +249,7 @@ function PracticalForm({
           }}
           required
         />
-        <label htmlFor={`start-${practicalExp.id}`}>Start Date:</label>
+        <label htmlFor={`end-${practicalExp.id}`}>Start Date:</label>
         <input
           type="month"
           name=""
