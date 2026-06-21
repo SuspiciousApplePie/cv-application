@@ -246,6 +246,7 @@ function PracticalForm({
             editCompanyName(e.target.value, practicalExp.id);
           }}
           readOnly={!isEditable}
+          required
         />
       </div>
 
@@ -260,6 +261,7 @@ function PracticalForm({
             editPositionTitle(e.target.value, practicalExp.id);
           }}
           readOnly={!isEditable}
+          required
         />
       </div>
       {isEditable && (
