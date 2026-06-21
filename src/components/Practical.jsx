@@ -196,25 +196,28 @@ function Practical() {
 
   return (
     <div className={wrapper.PRACTICAL}>
-      <h2>{formHeader.PRAC}</h2>
-      {renderPracticalExp()}
-      <div className={wrapper.BTN_CONTROL}>
-        {!isEditable && (
-          <button type="button" onClick={editPracticalForm}>
-            Edit
-          </button>
-        )}
-        {isEditable && (
-          <button type="button" onClick={addPracticalExp}>
-            Add
-          </button>
-        )}
-        {isEditable && (
-          <button type="submit" onClick={savePracticalForm}>
-            Save
-          </button>
-        )}
-      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          savePracticalForm();
+        }}
+      >
+        <h2>{formHeader.PRAC}</h2>
+        {renderPracticalExp()}
+        <div className={wrapper.BTN_CONTROL}>
+          {!isEditable && (
+            <button type="button" onClick={editPracticalForm}>
+              Edit
+            </button>
+          )}
+          {isEditable && (
+            <button type="button" onClick={addPracticalExp}>
+              Add
+            </button>
+          )}
+          {isEditable && <button type="submit">Save</button>}
+        </div>
+      </form>
     </div>
   );
 }
@@ -231,7 +234,7 @@ function PracticalForm({
   isEditable,
 }) {
   return (
-    <form action="" method="post">
+    <>
       <div className={wrapper.FORM_CONTROL}>
         <label htmlFor={`com-name-${practicalExp.id}`}>Company Name</label>
         <input
@@ -318,7 +321,7 @@ function PracticalForm({
           </button>
         </div>
       )}
-    </form>
+    </>
   );
 }
 
