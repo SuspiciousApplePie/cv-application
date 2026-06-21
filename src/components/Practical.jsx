@@ -25,6 +25,7 @@ function JobResponsibility(jobDesc = "") {
 
 function Practical() {
   const [practicalExp, setPracticalExp] = useState([]);
+  const [isEditable, setIsEditable] = useState(true);
 
   function addPracticalExp() {
     const newPracticalExp = [...practicalExp, PracticalExp()];
@@ -183,6 +184,11 @@ function Practical() {
     }
   }
 
+  function savePracticalForm() {
+    setIsEditable(false);
+  }
+
+
   return (
     <div className={wrapper.PRACTICAL}>
       <h2>{formHeader.PRAC}</h2>
@@ -190,6 +196,13 @@ function Practical() {
       <button type="button" onClick={addPracticalExp}>
         Add
       </button>
+)}
+        {isEditable && (
+          <button type="submit" onClick={savePracticalForm}>
+            Save
+          </button>
+        )}
+      </div>
     </div>
   );
 }
