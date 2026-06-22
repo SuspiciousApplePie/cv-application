@@ -102,6 +102,14 @@ function Education() {
   return (
     <>
       <h2>{formHeader.EDUC}</h2>
+      <form
+        action=""
+        method="post"
+        onSubmit={(e) => {
+          e.preventDefault();
+          saveEducationForm();
+        }}
+      >
       {renderEducInfo()}
       <form method="post" className={wrapper.BTN_CONTROL}>
         <button onClick={setNewEducInfo}>Add</button>
@@ -119,7 +127,7 @@ function EducationForm({
   deleteEducInfo,
 }) {
   return (
-    <form method="post">
+    <>
       <div className={wrapper.FORM_CONTROL}>
         <label htmlFor={`school: ${educInfo.id}`}>School Name</label>
         <input
@@ -194,9 +202,8 @@ function EducationForm({
         >
           Delete
         </button>
-        <button>Save</button>
       </div>
-    </form>
+    </>
   );
 }
 
