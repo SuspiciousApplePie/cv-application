@@ -64,6 +64,7 @@ function General() {
             value={genInfo.fname}
             onChange={setNewFirstName}
             required={true}
+            readOnly={!isEditable}
           />
         </div>
 
@@ -76,6 +77,7 @@ function General() {
             value={genInfo.lname}
             onChange={setNewLastName}
             required={true}
+            readOnly={!isEditable}
           />
         </div>
 
@@ -88,6 +90,7 @@ function General() {
             value={genInfo.email_add}
             onChange={setNewEmail}
             required={true}
+            readOnly={!isEditable}
           />
         </div>
 
@@ -100,6 +103,7 @@ function General() {
             value={genInfo.contact}
             onChange={setNewContact}
             required={true}
+            readOnly={!isEditable}
           />
         </div>
 
