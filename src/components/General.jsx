@@ -9,6 +9,8 @@ function General() {
     contact: "",
   });
 
+  const [isEditable, setIsEditable] = useState(true);
+
   const formData = {
     FNAME: "fname",
     LNAME: "lname",
@@ -23,33 +25,36 @@ function General() {
   };
 
   function setNewFirstName(e) {
-    e.preventDefault();
     const newFirst = { ...genInfo, fname: e.target.value };
     setGenInfo(newFirst);
   }
 
   function setNewLastName(e) {
-    e.preventDefault();
     const newLast = { ...genInfo, lname: e.target.value };
     setGenInfo(newLast);
   }
 
   function setNewEmail(e) {
-    e.preventDefault();
     const newEmail = { ...genInfo, email_add: e.target.value };
     setGenInfo(newEmail);
   }
 
   function setNewContact(e) {
-    e.preventDefault();
     const newContact = { ...genInfo, contact: e.target.value };
     setGenInfo(newContact);
   }
 
+  function saveGeneralInformation(e) {
+    e.preventDefault();
+    setIsEditable(false);
+  }
+
+  const editGeneralInformation = () => setIsEditable(true);
+
   return (
     <div className={wrapper.GENERAL}>
       <h2>{formHeader.GENERAL}</h2>
-      <form action="" method="post">
+      <form action="" method="post" onSubmit={saveGeneralInformation}>
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.FNAME}>First Name</label>
           <input
@@ -99,8 +104,12 @@ function General() {
         </div>
 
         <div className={wrapper.BTN_CONTROL}>
-          <button>Edit</button>
-          <button type="submit">Save</button>
+          {!isEditable && (
+            <button type="button" onClick={editGeneralInformation}>
+              Edit
+            </button>
+          )}
+          {isEditable && <button type="submit">Save</button>}
         </div>
       </form>
     </div>
