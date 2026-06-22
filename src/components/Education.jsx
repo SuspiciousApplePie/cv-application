@@ -33,6 +33,7 @@ function Education() {
             editStartDate={editStartDate}
             editEndDate={editEndDate}
             deleteEducInfo={deleteEducInfo}
+            isEditable={isEditable}
           />
         );
       });
@@ -114,7 +115,7 @@ function Education() {
           saveEducationForm();
         }}
       >
-      {renderEducInfo()}
+        {renderEducInfo()}
         <div className={wrapper.BTN_CONTROL}>
           {!isEditable && (
             <button type="button" onClick={editEducationForm}>
@@ -140,6 +141,7 @@ function EducationForm({
   editStartDate,
   editEndDate,
   deleteEducInfo,
+  isEditable,
 }) {
   return (
     <>
@@ -154,6 +156,7 @@ function EducationForm({
             editSchoolName(e.target.value, educInfo.id);
           }}
           required
+          readOnly={!isEditable}
         />
       </div>
 
@@ -167,6 +170,7 @@ function EducationForm({
           }}
           value={educInfo.level}
           required
+          disabled={!isEditable}
         >
           <option value={educLevel.SELECT}>--select--</option>
           <option value={educLevel.PRIMARY}>Primary</option>
@@ -191,6 +195,7 @@ function EducationForm({
             editStartDate(e.target.value, educInfo.id);
           }}
           required
+          readOnly={!isEditable}
         />
         <label htmlFor={`end-${educInfo.id}`}>End</label>
         <input
@@ -204,20 +209,21 @@ function EducationForm({
             editEndDate(e.target.value, educInfo.id);
           }}
           required
+          readOnly={!isEditable}
         />
       </div>
-
-      <div className={wrapper.BTN_CONTROL}>
-        <button>Edit</button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            deleteEducInfo(educInfo.id);
-          }}
-        >
-          Delete
-        </button>
-      </div>
+      {isEditable && (
+        <div className={wrapper.BTN_CONTROL}>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              deleteEducInfo(educInfo.id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </>
   );
 }
