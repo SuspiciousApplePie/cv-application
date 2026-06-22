@@ -13,6 +13,7 @@ function EducationExp(
 
 function Education() {
   const [educInfo, setEducInfo] = useState([]);
+  const [isEditable, setIsEditable] = useState(true);
 
   const setNewEducInfo = (e) => {
     e.preventDefault();
@@ -99,6 +100,9 @@ function Education() {
     setEducInfo(updatedEndDate);
   };
 
+  const editEducationForm = () => setIsEditable(true);
+  const saveEducationForm = () => setIsEditable(false);
+
   return (
     <>
       <h2>{formHeader.EDUC}</h2>
@@ -111,8 +115,19 @@ function Education() {
         }}
       >
       {renderEducInfo()}
-      <form method="post" className={wrapper.BTN_CONTROL}>
-        <button onClick={setNewEducInfo}>Add</button>
+        <div className={wrapper.BTN_CONTROL}>
+          {!isEditable && (
+            <button type="button" onClick={editEducationForm}>
+              Edit
+            </button>
+          )}
+          {isEditable && (
+            <button type="button" onClick={setNewEducInfo}>
+              Add
+            </button>
+          )}
+          {isEditable && <button type="submit">Save</button>}
+        </div>
       </form>
     </>
   );
