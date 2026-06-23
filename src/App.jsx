@@ -17,7 +17,7 @@ function Main() {
     contact: "",
   });
 
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditableGen, setIsEditableGen] = useState(true);
   const [displayedGenInfo, setDisplayedGenInfo] = useState(null);
 
   function setterGenInfo(newValue) {
@@ -45,9 +45,9 @@ function Main() {
     <main>
       <General
         genInfo={genInfo}
-        setGenInfo={setterGenInfo}
-        isEditable={isEditable}
-        setIsEditable={setIsEditable}
+        setGenInfo={setGenInfo}
+        isEditable={isEditableGen}
+        setIsEditable={setIsEditableGen}
         setDisplayedGenInfo={setDisplayedGenInfo}
       />
       <Education />
