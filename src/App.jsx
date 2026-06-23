@@ -44,15 +44,22 @@ function Main() {
 
   const renderEduc = () => {
     if (displayedEducExp.length) {
-      return displayedEducExp.map((displayedEducItem) => {
-        return (
-          <div key={displayedEducItem.id}>
-            <h2>{displayedEducItem.schoolName}</h2>
-            <h3>{displayedEducItem.level}</h3>
-            <time>{`${format(displayedEducItem.startDate, "yyyy MMMM")} - ${format(displayedEducItem.endDate, "yyyy MMMM")}`}</time>
-          </div>
-        );
-      });
+      return (
+        <div>
+          <h1>Education Experience</h1>
+          <section>
+            {displayedEducExp.map((displayedEducItem) => {
+              return (
+                <div key={displayedEducItem.id}>
+                  <h2>{displayedEducItem.schoolName}</h2>
+                  <h3>{displayedEducItem.level}</h3>
+                  <time>{`${format(displayedEducItem.startDate, "yyyy MMMM")} - ${format(displayedEducItem.endDate, "yyyy MMMM")}`}</time>
+                </div>
+              );
+            })}
+          </section>
+        </div>
+      );
     }
   };
 
