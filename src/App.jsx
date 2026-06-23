@@ -3,6 +3,7 @@ import { General } from "./components/General.jsx";
 import { Education } from "./components/Education.jsx";
 import { Practical } from "./components/Practical.jsx";
 import { Display } from "./components/Display.jsx";
+import { format } from "date-fns";
 import "./App.css";
 
 function App() {
@@ -20,9 +21,9 @@ function Main() {
   const [isEditableGen, setIsEditableGen] = useState(true);
   const [displayedGenInfo, setDisplayedGenInfo] = useState(null);
 
-  function setterGenInfo(newValue) {
-    setGenInfo(newValue);
-  }
+  const [educInfo, setEducInfo] = useState([]);
+  const [isEditableEduc, setIsEditableEduc] = useState(true);
+  const [displayedEducExp, setDisplayedEducExp] = useState([]);
 
   const renderGeneral = () => {
     if (displayedGenInfo) {
@@ -41,6 +42,20 @@ function Main() {
     }
   };
 
+  const renderEduc = () => {
+    if (displayedEducExp.length) {
+      return displayedEducExp.map((displayedEducItem) => {
+        return (
+          <div key={displayedEducItem.id}>
+            <h2>{displayedEducItem.schoolName}</h2>
+            <h3>{displayedEducItem.level}</h3>
+            <time>{`${format(displayedEducItem.startDate, "yyyy MMMM")} - ${format(displayedEducItem.endDate, "yyyy MMMM")}`}</time>
+          </div>
+        );
+      });
+    }
+  };
+
   return (
     <main>
       <General
@@ -50,9 +65,15 @@ function Main() {
         setIsEditable={setIsEditableGen}
         setDisplayedGenInfo={setDisplayedGenInfo}
       />
-      <Education />
+      <Education
+        educInfo={educInfo}
+        setEducInfo={setEducInfo}
+        isEditable={isEditableEduc}
+        setIsEditable={setIsEditableEduc}
+        setDisplayedEducExp={setDisplayedEducExp}
+      />
       <Practical />
-      <Display renderGeneral={renderGeneral} />
+      <Display renderGeneral={renderGeneral} renderEduc={renderEduc} />
     </main>
   );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { formHeader, wrapper, educLevel } from "./constant.js";
 import { format, parse } from "date-fns";
 
@@ -11,10 +10,13 @@ function EducationExp(
   return { id: crypto.randomUUID(), schoolName, level, startDate, endDate };
 }
 
-function Education() {
-  const [educInfo, setEducInfo] = useState([]);
-  const [isEditable, setIsEditable] = useState(true);
-
+function Education({
+  setEducInfo,
+  educInfo,
+  isEditable,
+  setIsEditable,
+  setDisplayedEducExp,
+}) {
   const setNewEducInfo = (e) => {
     e.preventDefault();
     const newEducInfo = [...educInfo, EducationExp()];
@@ -102,7 +104,10 @@ function Education() {
   };
 
   const editEducationForm = () => setIsEditable(true);
-  const saveEducationForm = () => setIsEditable(false);
+  const saveEducationForm = () => {
+    setIsEditable(false);
+    setDisplayedEducExp(educInfo);
+  };
 
   return (
     <>
