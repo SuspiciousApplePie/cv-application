@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { wrapper, formHeader } from "./constant.js";
 import { format, parse } from "date-fns";
 
@@ -23,10 +22,13 @@ function JobResponsibility(jobDesc = "") {
   return { id: crypto.randomUUID(), jobDesc };
 }
 
-function Practical() {
-  const [practicalExp, setPracticalExp] = useState([]);
-  const [isEditable, setIsEditable] = useState(true);
-
+function Practical({
+  practicalExp,
+  setPracticalExp,
+  isEditable,
+  setIsEditable,
+  setDisplayedPracExp,
+}) {
   function addPracticalExp() {
     const newPracticalExp = [...practicalExp, PracticalExp()];
     setPracticalExp(newPracticalExp);
@@ -188,6 +190,7 @@ function Practical() {
 
   function savePracticalForm() {
     setIsEditable(false);
+    setDisplayedPracExp(practicalExp);
   }
 
   function editPracticalForm() {
