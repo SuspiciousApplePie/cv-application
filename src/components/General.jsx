@@ -1,16 +1,12 @@
 import { formHeader, wrapper } from "./constant.js";
-import { useState } from "react";
 
-function General() {
-  const [genInfo, setGenInfo] = useState({
-    fname: "",
-    lname: "",
-    email_add: "",
-    contact: "",
-  });
-
-  const [isEditable, setIsEditable] = useState(true);
-
+function General({
+  genInfo,
+  setGenInfo,
+  isEditable,
+  setIsEditable,
+  setDisplayedGenInfo,
+}) {
   const formData = {
     FNAME: "fname",
     LNAME: "lname",
@@ -47,6 +43,7 @@ function General() {
   function saveGeneralInformation(e) {
     e.preventDefault();
     setIsEditable(false);
+    setDisplayedGenInfo(genInfo);
   }
 
   const editGeneralInformation = () => setIsEditable(true);

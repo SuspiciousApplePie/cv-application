@@ -2,6 +2,7 @@ import { useState } from "react";
 import { General } from "./components/General.jsx";
 import { Education } from "./components/Education.jsx";
 import { Practical } from "./components/Practical.jsx";
+import { Display } from "./components/Display.jsx";
 import "./App.css";
 
 function App() {
@@ -9,11 +10,49 @@ function App() {
 }
 
 function Main() {
+  const [genInfo, setGenInfo] = useState({
+    fname: "",
+    lname: "",
+    email_add: "",
+    contact: "",
+  });
+
+  const [isEditable, setIsEditable] = useState(true);
+  const [displayedGenInfo, setDisplayedGenInfo] = useState(null);
+
+  function setterGenInfo(newValue) {
+    setGenInfo(newValue);
+  }
+
+  const renderGeneral = () => {
+    if (displayedGenInfo) {
+      return (
+        <div>
+          <h1>General Information</h1>
+          <section>
+            <h2>
+              {displayedGenInfo.fname} {displayedGenInfo.lname}
+            </h2>
+            <address>Email: {displayedGenInfo.email_add}</address>
+            <address>Contact: {displayedGenInfo.contact}</address>
+          </section>
+        </div>
+      );
+    }
+  };
+
   return (
     <main>
-      <General />
+      <General
+        genInfo={genInfo}
+        setGenInfo={setterGenInfo}
+        isEditable={isEditable}
+        setIsEditable={setIsEditable}
+        setDisplayedGenInfo={setDisplayedGenInfo}
+      />
       <Education />
       <Practical />
+      <Display renderGeneral={renderGeneral} />
     </main>
   );
 }
