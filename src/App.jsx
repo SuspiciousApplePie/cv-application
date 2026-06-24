@@ -3,11 +3,17 @@ import { General } from "./components/General.jsx";
 import { Education } from "./components/Education.jsx";
 import { Practical } from "./components/Practical.jsx";
 import { Display } from "./components/Display.jsx";
+import { Header } from "./components/Header.jsx";
 import { format } from "date-fns";
 import "./App.css";
 
 function App() {
-  return <Main />;
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 }
 
 function Main() {

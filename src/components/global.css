@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+:root {
+  --font-sm: 0.8rem;
+  --font-md: 1rem;
+  --font-lg: 1.2rem;
+  --font-xl: 1.6rem;
+
+  --padding-1: 0.25rem;
+  --padding-2: 0.5rem;
+  --padding-3: 0.75rem;
+  --padding-4: 1rem;
+
+  --main-color: #9966cc;
+  --font-color-1: #f1f2f3;
+}
