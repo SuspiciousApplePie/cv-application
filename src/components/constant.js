@@ -10,6 +10,8 @@ const wrapper = {
   FORM_CONTROL: "form-control",
   BTN_CONTROL: "btn-control",
   JOB_WRAPPER: "job-res-wrapper",
+  FORM_WRAPPER: "form-wrapper",
+  CV_WRAPPER: "cv-wrapper",
 };
 
 const educLevel = {

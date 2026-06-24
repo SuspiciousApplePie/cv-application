@@ -4,6 +4,8 @@ import { Education } from "./Education.jsx";
 import { Practical } from "./Practical.jsx";
 import { Display } from "./Display.jsx";
 import { format } from "date-fns";
+import { wrapper } from "./constant.js";
+import "./Main.css";
 
 function Main() {
   const [genInfo, setGenInfo] = useState({
@@ -104,27 +106,29 @@ function Main() {
 
   return (
     <main>
-      <General
-        genInfo={genInfo}
-        setGenInfo={setGenInfo}
-        isEditable={isEditableGen}
-        setIsEditable={setIsEditableGen}
-        setDisplayedGenInfo={setDisplayedGenInfo}
-      />
-      <Education
-        educInfo={educInfo}
-        setEducInfo={setEducInfo}
-        isEditable={isEditableEduc}
-        setIsEditable={setIsEditableEduc}
-        setDisplayedEducExp={setDisplayedEducExp}
-      />
-      <Practical
-        practicalExp={practicalExp}
-        setPracticalExp={setPracticalExp}
-        isEditable={isEditablePrac}
-        setIsEditable={setIsEditablePrac}
-        setDisplayedPracExp={setDisplayedPracExp}
-      />
+      <div className={wrapper.FORM_WRAPPER}>
+        <General
+          genInfo={genInfo}
+          setGenInfo={setGenInfo}
+          isEditable={isEditableGen}
+          setIsEditable={setIsEditableGen}
+          setDisplayedGenInfo={setDisplayedGenInfo}
+        />
+        <Education
+          educInfo={educInfo}
+          setEducInfo={setEducInfo}
+          isEditable={isEditableEduc}
+          setIsEditable={setIsEditableEduc}
+          setDisplayedEducExp={setDisplayedEducExp}
+        />
+        <Practical
+          practicalExp={practicalExp}
+          setPracticalExp={setPracticalExp}
+          isEditable={isEditablePrac}
+          setIsEditable={setIsEditablePrac}
+          setDisplayedPracExp={setDisplayedPracExp}
+        />
+      </div>
       <Display
         renderGeneral={renderGeneral}
         renderEduc={renderEduc}
