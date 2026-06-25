@@ -1,5 +1,7 @@
 import { wrapper, formHeader } from "./constant.js";
 import { format, parse } from "date-fns";
+import "./Practical.css";
+import "./global.css";
 
 function PracticalExp(
   companyName = "",
@@ -280,8 +282,8 @@ function PracticalForm({
         </div>
       )}
       {renderJobResponsibilities(practicalExp)}
-      <div className={wrapper.BTN_CONTROL}>
-        <label htmlFor={`start-${practicalExp.id}`}>Start Date:</label>
+      <div className={wrapper.FORM_CONTROL}>
+        <label htmlFor={`start-${practicalExp.id}`}>Start</label>
         <input
           type="month"
           name=""
@@ -297,7 +299,9 @@ function PracticalForm({
           required
           readOnly={!isEditable}
         />
-        <label htmlFor={`end-${practicalExp.id}`}>Start Date:</label>
+      </div>
+      <div className={wrapper.FORM_CONTROL}>
+        <label htmlFor={`end-${practicalExp.id}`}>End</label>
         <input
           type="month"
           name=""
