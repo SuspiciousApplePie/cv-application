@@ -1,4 +1,6 @@
 import { formHeader, wrapper } from "./constant.js";
+import "./General.css";
+import "./global.css";
 
 function General({
   genInfo,
