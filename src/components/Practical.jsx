@@ -270,7 +270,8 @@ function PracticalForm({
         />
       </div>
       {isEditable && (
-        <div className={wrapper.BTN_CONTROL}>
+        <div className={`${wrapper.BTN_CONTROL} job-res`}>
+          <span>Job Responsibilities</span>
           <button
             type="button"
             onClick={() => {
