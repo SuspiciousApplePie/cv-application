@@ -6,6 +6,7 @@ const formHeader = {
 
 const wrapper = {
   GENERAL: "general-wrapper",
+  EDUC_WRAPPER: "educ-wrapper",
   PRACTICAL: "practical-wrapper",
   FORM_CONTROL: "form-control",
   BTN_CONTROL: "btn-control",

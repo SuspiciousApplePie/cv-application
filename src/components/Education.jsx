@@ -1,5 +1,7 @@
 import { formHeader, wrapper, educLevel } from "./constant.js";
 import { format, parse } from "date-fns";
+import "./Education.css";
+import "./global.css";
 
 function EducationExp(
   schoolName = "",
@@ -110,7 +112,7 @@ function Education({
   };
 
   return (
-    <>
+    <div className={wrapper.EDUC_WRAPPER}>
       <h2>{formHeader.EDUC}</h2>
       <form
         action=""
@@ -135,7 +137,7 @@ function Education({
           {isEditable && <button type="submit">Save</button>}
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
