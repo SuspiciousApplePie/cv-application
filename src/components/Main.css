@@ -58,3 +58,10 @@ select {
   color: var(--main-color);
   background-color: var(--font-color-1);
 }
+
+input:focus,
+select:focus,
+button:focus {
+  outline: 1px solid var(--main-color);
+  border-radius: 2px;
+}
