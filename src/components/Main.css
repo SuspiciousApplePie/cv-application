@@ -7,6 +7,10 @@ main > * {
   padding: var(--space-3);
 }
 
+main .form-wrapper {
+  color: var(--main-color);
+}
+
 .general-wrapper,
 .educ-wrapper,
 .practical-wrapper {
@@ -29,8 +33,12 @@ button {
   font-family: "Source Sans 3", sans-serif;
   cursor: pointer;
   border: none;
+  color: var(--main-color);
 }
 
+button:hover {
+  color: var(--font-color-1);
+}
 
 .btn-control {
   display: flex;
@@ -45,3 +53,4 @@ select {
   font-size: var(--font-md);
   border: none;
   border-bottom: 1px solid var(--main-color);
+  color: var(--main-color);
