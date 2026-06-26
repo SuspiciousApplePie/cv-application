@@ -39,6 +39,7 @@ button {
 button:hover {
   color: var(--font-color-1);
   background-color: var(--main-color);
+  border-radius: 2px;
 }
 
 .btn-control {
