@@ -1,39 +1,10 @@
-.practical-wrapper form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
 .practical-wrapper .form-control,
 .job-res-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.job-res-wrapper {
-  gap: var(--space-2);
-}
-
-.practical-wrapper input {
-  padding: var(--space-1);
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-md);
-}
-
-.practical-wrapper .btn-control {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-1);
-}
-
 .practical-wrapper .btn-control.job-res {
   justify-content: space-between;
   align-items: center;
-}
-
-.practical-wrapper .btn-control button {
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--font-md);
-  font-family: "Source Sans 3", sans-serif;
-  cursor: pointer;
 }

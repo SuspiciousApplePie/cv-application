@@ -2,31 +2,7 @@
   font-size: var(--font-xl);
 }
 
-.general-wrapper form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
 .general-wrapper .form-control {
   display: flex;
   flex-direction: column;
-}
-
-.general-wrapper input {
-  padding: var(--space-1);
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-md);
-}
-
-.general-wrapper .btn-control {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.general-wrapper .btn-control button {
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--font-md);
-  font-family: "Source Sans 3", sans-serif;
-  cursor: pointer;
 }
