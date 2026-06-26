@@ -38,6 +38,7 @@ button {
 
 button:hover {
   color: var(--font-color-1);
+  background-color: var(--main-color);
 }
 
 .btn-control {
@@ -54,3 +55,5 @@ select {
   border: none;
   border-bottom: 1px solid var(--main-color);
   color: var(--main-color);
+  background-color: var(--font-color-1);
+}
