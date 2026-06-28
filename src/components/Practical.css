@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.job-res-wrapper {
+  gap: var(--space-1);
+}
+
 .practical-wrapper .btn-control.job-res {
   justify-content: space-between;
   align-items: center;
