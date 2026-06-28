@@ -68,7 +68,7 @@ function Main() {
     if (jobResponsibilities.length) {
       return (
         <div>
-          <h1>Job Responsibilities</h1>
+          <h2>Job Responsibilities</h2>
           <ul>
             {jobResponsibilities.map((job) => {
               return <li key={job.id}>{job.jobDesc}</li>;
