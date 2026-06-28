@@ -13,6 +13,7 @@ const wrapper = {
   JOB_WRAPPER: "job-res-wrapper",
   FORM_WRAPPER: "form-wrapper",
   CV_WRAPPER: "cv-wrapper",
+  PAPER: "paper",
 };
 
 const educLevel = {
