@@ -13,14 +13,15 @@ const wrapper = {
   JOB_WRAPPER: "job-res-wrapper",
   FORM_WRAPPER: "form-wrapper",
   CV_WRAPPER: "cv-wrapper",
+  PAPER: "paper",
 };
 
 const educLevel = {
   SELECT: "",
-  PRIMARY: "primary",
-  MIDDLE: "middle",
-  HIGH_SCHOOL: "high-school",
-  BACHELOR: "bachelor",
+  PRIMARY: "Primary",
+  MIDDLE: "Middle",
+  HIGH_SCHOOL: "High School",
+  BACHELOR: "Bachelor",
 };
 
 export { formHeader, wrapper, educLevel };
