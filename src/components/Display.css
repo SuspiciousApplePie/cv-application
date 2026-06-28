@@ -1,0 +1,9 @@
+.paper {
+  background-color: var(--font-color-1);
+  padding: var(--space-4);
+  color: var(--font-color-2);
+}
+
+.paper ul {
+  padding-left: var(--space-4);
+}
