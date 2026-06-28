@@ -345,7 +345,7 @@ function JobResponsibilities({
   return (
     <div className={wrapper.JOB_WRAPPER}>
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`job-res-${job.id}`}>Job Responsibilities</label>
+        <label htmlFor={`job-res-${job.id}`}>Job Responsibility</label>
         <input
           type="text"
           name=""
