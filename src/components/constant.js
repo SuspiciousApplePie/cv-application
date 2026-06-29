@@ -26,6 +26,7 @@ const educLevel = {
 
 const formLabel = {
   FIRST_NAME: "First Name",
+  LAST_NAME: "Last Name",
 };
 
 export { formHeader, wrapper, educLevel, formLabel };

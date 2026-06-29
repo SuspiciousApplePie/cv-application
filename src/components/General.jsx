@@ -1,5 +1,5 @@
 import { formHeader, wrapper, formLabel } from "./constant.js";
-import { setNameError } from "./validation.js";
+import { setNameError, validateGeneralForm } from "./validation.js";
 import { useState } from "react";
 import "./General.css";
 import "./global.css";
@@ -25,10 +25,9 @@ function General({
   };
 
   const [formError, setFormError] = useState({
-    name: null,
-    fname: null,
-    email: null,
-    contact: null,
+    fname: undefined,
+    email: undefined,
+    contact: undefined,
   });
 
   function setNewFirstName(e) {
@@ -37,7 +36,6 @@ function General({
     setNameError(
       formLabel.FIRST_NAME,
       e.target.value.trim(),
-      3,
       formError,
       setFormError,
     );
@@ -60,18 +58,8 @@ function General({
 
   function saveGeneralInformation(e) {
     e.preventDefault();
-    if (genInfo.fname.trim().length < 3) {
-      if (
-        setNameError(
-          formLabel.FIRST_NAME,
-          genInfo.fname.trim(),
-          3,
-          formError,
-          setFormError,
-        )
-      )
-        return;
-    }
+    if (validateGeneralForm(genInfo, formError, setFormError)) return;
+    setGenInfo({ ...genInfo, fname: genInfo.fname.trim() });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
   }
@@ -92,7 +80,7 @@ function General({
             onChange={setNewFirstName}
             readOnly={!isEditable}
           />
-          {formError.fname && <span>{formError.fname}</span>}
+          {formError.fname !== null && <span>{formError.fname}</span>}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
@@ -106,6 +94,7 @@ function General({
             required={true}
             readOnly={!isEditable}
           />
+          {formError.lname && <span>{formError.lname}</span>}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
