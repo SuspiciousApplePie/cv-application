@@ -1,4 +1,6 @@
-import { formHeader, wrapper } from "./constant.js";
+import { formHeader, wrapper, formLabel } from "./constant.js";
+import { setNameError } from "./validation.js";
+import { useState } from "react";
 import "./General.css";
 import "./global.css";
 
@@ -22,9 +24,23 @@ function General({
     EMAIL: "email",
   };
 
+  const [formError, setFormError] = useState({
+    name: null,
+    fname: null,
+    email: null,
+    contact: null,
+  });
+
   function setNewFirstName(e) {
-    const newFirst = { ...genInfo, fname: e.target.value };
-    setGenInfo(newFirst);
+    const newFirstName = { ...genInfo, fname: e.target.value };
+    setGenInfo(newFirstName);
+    setNameError(
+      formLabel.FIRST_NAME,
+      e.target.value.trim(),
+      3,
+      formError,
+      setFormError,
+    );
   }
 
   function setNewLastName(e) {
@@ -44,6 +60,18 @@ function General({
 
   function saveGeneralInformation(e) {
     e.preventDefault();
+    if (genInfo.fname.trim().length < 3) {
+      if (
+        setNameError(
+          formLabel.FIRST_NAME,
+          genInfo.fname.trim(),
+          3,
+          formError,
+          setFormError,
+        )
+      )
+        return;
+    }
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
   }
@@ -62,9 +90,9 @@ function General({
             id={formData.FNAME}
             value={genInfo.fname}
             onChange={setNewFirstName}
-            required={true}
             readOnly={!isEditable}
           />
+          {formError.fname && <span>{formError.fname}</span>}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>

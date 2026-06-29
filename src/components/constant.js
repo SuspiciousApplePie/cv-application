@@ -24,4 +24,8 @@ const educLevel = {
   BACHELOR: "Bachelor",
 };
 
-export { formHeader, wrapper, educLevel };
+const formLabel = {
+  FIRST_NAME: "First Name",
+};
+
+export { formHeader, wrapper, educLevel, formLabel };
