@@ -70,3 +70,13 @@ button:focus {
   outline: 1px solid var(--main-color);
   border-radius: 2px;
 }
+
+input:read-only,
+select:disabled {
+  border: none;
+}
+
+select:disabled {
+  appearance: none;
+  opacity: 1;
+}
