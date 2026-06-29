@@ -80,3 +80,8 @@ select:disabled {
   appearance: none;
   opacity: 1;
 }
+
+.error-message {
+  font-size: var(--font-sm);
+  color: red;
+}

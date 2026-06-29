@@ -4,6 +4,10 @@ const formHeader = {
   PRAC: "Practical Experience",
 };
 
+const msgClass = {
+  ERROR_MSG: "error-message",
+};
+
 const wrapper = {
   GENERAL: "general-wrapper",
   EDUC_WRAPPER: "educ-wrapper",
@@ -29,4 +33,4 @@ const formLabel = {
   LAST_NAME: "Last Name",
 };
 
-export { formHeader, wrapper, educLevel, formLabel };
+export { formHeader, wrapper, educLevel, formLabel, msgClass };

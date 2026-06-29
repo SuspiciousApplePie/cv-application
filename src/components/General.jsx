@@ -1,4 +1,4 @@
-import { formHeader, wrapper, formLabel } from "./constant.js";
+import { formHeader, wrapper, formLabel, msgClass } from "./constant.js";
 import { setNameError, validateGeneralForm } from "./validation.js";
 import { useState } from "react";
 import "./General.css";
