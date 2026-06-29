@@ -18,9 +18,14 @@ function setNameError(inputType, textValue, formError, setFormError) {
   if (validityMessage) {
     if (inputType === formLabel.FIRST_NAME)
       setFormError({ ...formError, fname: validityMessage });
+    if (inputType === formLabel.LAST_NAME)
+      setFormError({ ...formError, lname: validityMessage });
     return true;
   } else {
-    setFormError({ ...formError, fname: null });
+    if (inputType === formLabel.FIRST_NAME)
+      setFormError({ ...formError, fname: null });
+    if (inputType === formLabel.LAST_NAME)
+      setFormError({ ...formError, lname: null });
     return false;
   }
 }

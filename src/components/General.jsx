@@ -44,6 +44,12 @@ function General({
   function setNewLastName(e) {
     const newLast = { ...genInfo, lname: e.target.value };
     setGenInfo(newLast);
+    setNameError(
+      formLabel.LAST_NAME,
+      e.target.value.trim(),
+      formError,
+      setFormError,
+    );
   }
 
   function setNewEmail(e) {
@@ -59,7 +65,11 @@ function General({
   function saveGeneralInformation(e) {
     e.preventDefault();
     if (validateGeneralForm(genInfo, formError, setFormError)) return;
-    setGenInfo({ ...genInfo, fname: genInfo.fname.trim() });
+    setGenInfo({
+      ...genInfo,
+      fname: genInfo.fname.trim(),
+      lname: genInfo.lname.trim(),
+    });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
   }
@@ -80,7 +90,9 @@ function General({
             onChange={setNewFirstName}
             readOnly={!isEditable}
           />
-          {formError.fname !== null && <span>{formError.fname}</span>}
+          {formError.fname !== null && (
+            <span className={msgClass.ERROR_MSG}>{formError.fname}</span>
+          )}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
@@ -94,7 +106,9 @@ function General({
             required={true}
             readOnly={!isEditable}
           />
-          {formError.lname && <span>{formError.lname}</span>}
+          {formError.lname !== null && (
+            <span className={msgClass.ERROR_MSG}>{formError.lname}</span>
+          )}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
