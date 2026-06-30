@@ -41,6 +41,8 @@ function validateGeneralForm(genInfo, formError, setFormError) {
     hasError = true;
   if (validateEmail(genInfo.email_add.trim(), formError, setFormError))
     hasError = true;
+  if (validateContact(genInfo.contact, formError, setFormError))
+    hasError = true;
   return hasError;
 }
 
@@ -49,7 +51,10 @@ function validateEmail(email, formError, setFormError) {
     setFormError({ ...formError, email: "Email is required" });
     return true;
   } else if (!regexPattern.EMAIL.test(email)) {
-    setFormError({ ...formError, email: "Please enter a valid email address" });
+    setFormError({
+      ...formError,
+      email: "Please enter a valid email address. eg: name@example.com",
+    });
     return true;
   } else {
     setFormError({ ...formError, email: null });
@@ -57,4 +62,41 @@ function validateEmail(email, formError, setFormError) {
   }
 }
 
-export { setNameError, validateGeneralForm, validateEmail };
+function validateContact(contact, formError, setFormError) {
+  const cleanedContact = contact.replace(/\s+/g, "").trim();
+  if (cleanedContact.length > 0) {
+    if (cleanedContact.length < 7) {
+      setFormError({
+        ...formError,
+        contact: `Contact number must be at least 7 characters. (length: ${cleanedContact.length})`,
+      });
+      return true;
+    } else if (cleanedContact.length > 15) {
+      setFormError({
+        ...formError,
+        contact: `Contact number must be at not longer than 15 characters. (length: ${cleanedContact.length})`,
+      });
+      return true;
+    } else if (!regexPattern.CONTACT.test(cleanedContact)) {
+      setFormError({
+        ...formError,
+        contact: "Please enter a valid contact number",
+      });
+      return true;
+    } else {
+      setFormError({
+        ...formError,
+        contact: null,
+      });
+      return false;
+    }
+  } else {
+    setFormError({
+      ...formError,
+      contact: null,
+    });
+    return false;
+  }
+}
+
+export { setNameError, validateGeneralForm, validateEmail, validateContact };

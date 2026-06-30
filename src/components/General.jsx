@@ -3,6 +3,7 @@ import {
   setNameError,
   validateGeneralForm,
   validateEmail,
+  validateContact,
 } from "./validation.js";
 import { useState } from "react";
 import "./General.css";
@@ -30,6 +31,7 @@ function General({
 
   const [formError, setFormError] = useState({
     fname: undefined,
+    lname: undefined,
     email: undefined,
     contact: undefined,
   });
@@ -64,6 +66,7 @@ function General({
   function setNewContact(e) {
     const newContact = { ...genInfo, contact: e.target.value };
     setGenInfo(newContact);
+    validateContact(e.target.value, formError, setFormError);
   }
 
   function saveGeneralInformation(e) {
@@ -74,6 +77,7 @@ function General({
       fname: genInfo.fname.trim(),
       lname: genInfo.lname.trim(),
       email_add: genInfo.email_add.trim(),
+      contact: genInfo.contact.replace(/\s+/g, " ").trim(),
     });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
@@ -149,9 +153,11 @@ function General({
             id={formData.CONTACT}
             value={genInfo.contact}
             onChange={setNewContact}
-            required={true}
             readOnly={!isEditable}
           />
+          {formError.contact !== null && (
+            <span className={msgClass.ERROR_MSG}>{formError.contact}</span>
+          )}
         </div>
 
         <div className={wrapper.BTN_CONTROL}>
