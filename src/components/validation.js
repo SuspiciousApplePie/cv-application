@@ -36,6 +36,8 @@ function validateGeneralForm(genInfo, formError, setFormError) {
     setNameError(formLabel.FIRST_NAME, genInfo.fname, formError, setFormError)
   )
     hasError = true;
+  if (setNameError(formLabel.LAST_NAME, genInfo.lname, formError, setFormError))
+    hasError = true;
   return hasError;
 }
 
