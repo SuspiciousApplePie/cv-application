@@ -123,7 +123,10 @@ function General({
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.EMAIL_ADDRESS}>Email</label>
           <input
-            type={formType.EMAIL}
+            type={formType.TEXT}
+            inputMode={formType.EMAIL}
+            autoComplete={formType.EMAIL}
+            aria-label="Email Address"
             name={formData.EMAIL_ADDRESS}
             id={formData.EMAIL_ADDRESS}
             value={genInfo.email_add}
