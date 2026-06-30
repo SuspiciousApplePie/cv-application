@@ -1,5 +1,9 @@
 import { formHeader, wrapper, formLabel, msgClass } from "./constant.js";
-import { setNameError, validateGeneralForm } from "./validation.js";
+import {
+  setNameError,
+  validateGeneralForm,
+  validateEmail,
+} from "./validation.js";
 import { useState } from "react";
 import "./General.css";
 import "./global.css";
@@ -69,6 +73,7 @@ function General({
       ...genInfo,
       fname: genInfo.fname.trim(),
       lname: genInfo.lname.trim(),
+      email_add: genInfo.email_add.trim(),
     });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
@@ -79,7 +84,12 @@ function General({
   return (
     <div className={wrapper.GENERAL}>
       <h2>{formHeader.GENERAL}</h2>
-      <form action="" method="post" onSubmit={saveGeneralInformation}>
+      <form
+        action=""
+        method="post"
+        onSubmit={saveGeneralInformation}
+        noValidate
+      >
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.FNAME}>First Name</label>
           <input
@@ -103,7 +113,6 @@ function General({
             id={formData.LNAME}
             value={genInfo.lname}
             onChange={setNewLastName}
-            required={true}
             readOnly={!isEditable}
           />
           {formError.lname !== null && (
@@ -119,9 +128,14 @@ function General({
             id={formData.EMAIL_ADDRESS}
             value={genInfo.email_add}
             onChange={setNewEmail}
-            required={true}
             readOnly={!isEditable}
+            onBlur={(e) => {
+              validateEmail(e.target.value.trim(), formError, setFormError);
+            }}
           />
+          {formError.email !== null && (
+            <span className={msgClass.ERROR_MSG}>{formError.email}</span>
+          )}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>

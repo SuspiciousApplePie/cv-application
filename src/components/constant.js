@@ -4,6 +4,10 @@ const formHeader = {
   PRAC: "Practical Experience",
 };
 
+const regexPattern = {
+  EMAIL: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+};
+
 const msgClass = {
   ERROR_MSG: "error-message",
 };
@@ -33,4 +37,4 @@ const formLabel = {
   LAST_NAME: "Last Name",
 };
 
-export { formHeader, wrapper, educLevel, formLabel, msgClass };
+export { formHeader, wrapper, educLevel, formLabel, msgClass, regexPattern };
