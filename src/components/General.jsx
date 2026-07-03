@@ -1,4 +1,6 @@
 import { formHeader, wrapper } from "./constant.js";
+import { validateGeneralForm } from "./validation.js";
+import { useState } from "react";
 import "./General.css";
 import "./global.css";
 
@@ -9,6 +11,8 @@ function General({
   setIsEditable,
   setDisplayedGenInfo,
 }) {
+  const [changed, setChange] = useState({});
+  const [hasSubmit, setHasSubmit] = useState(false);
   const formData = {
     FNAME: "fname",
     LNAME: "lname",
@@ -23,6 +27,7 @@ function General({
   };
 
   function setNewFirstName(e) {
+    setChange({ ...changed, fname: true });
     const newFirst = { ...genInfo, fname: e.target.value };
     setGenInfo(newFirst);
   }
@@ -44,16 +49,30 @@ function General({
 
   function saveGeneralInformation(e) {
     e.preventDefault();
+    const isValid = Object.keys(genErrors).length === 0;
+    if (!isValid) {
+      setHasSubmit(true);
+      return;
+    }
+    if (hasSubmit) {
+      setHasSubmit(false);
+    }
+    setGenInfo({ ...genInfo, fname: genInfo.fname.trim() });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
   }
 
   const editGeneralInformation = () => setIsEditable(true);
-
+  const genErrors = validateGeneralForm(genInfo);
   return (
     <div className={wrapper.GENERAL}>
       <h2>{formHeader.GENERAL}</h2>
-      <form action="" method="post" onSubmit={saveGeneralInformation}>
+      <form
+        action=""
+        method="post"
+        onSubmit={saveGeneralInformation}
+        noValidate
+      >
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.FNAME}>First Name</label>
           <input
@@ -65,6 +84,12 @@ function General({
             required={true}
             readOnly={!isEditable}
           />
+          {(changed.fname && genErrors.fname && (
+            <span className={wrapper.ERR_MSG}>{genErrors.fname}</span>
+          )) ||
+            (hasSubmit && genErrors.fname && (
+              <span className={wrapper.ERR_MSG}>{genErrors.fname}</span>
+            ))}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>

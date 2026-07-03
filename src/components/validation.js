@@ -19,6 +19,15 @@ function validateEndDate(start, end) {
   if (isAfter(start, end)) return "Start date must be before End date";
 }
 
+function validateGeneralForm(genInfo) {
+  const errors = {};
+  const fnameErr = validateName("First name", genInfo.fname.trim());
+
+  if (fnameErr) errors.fname = fnameErr;
+
+  return errors;
+}
+
 function validateEducationForm(educInfo) {
   const errors = {};
   const schoolNameError = validateName("School name", educInfo.schoolName);
@@ -40,4 +49,4 @@ function validateEducationForm(educInfo) {
 
   return errors;
 }
-export { validateEducationForm };
+export { validateEducationForm, validateGeneralForm };
