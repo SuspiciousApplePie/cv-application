@@ -33,6 +33,7 @@ function General({
   }
 
   function setNewLastName(e) {
+    setChange({ ...changed, lname: true });
     const newLast = { ...genInfo, lname: e.target.value };
     setGenInfo(newLast);
   }
@@ -57,7 +58,11 @@ function General({
     if (hasSubmit) {
       setHasSubmit(false);
     }
-    setGenInfo({ ...genInfo, fname: genInfo.fname.trim() });
+    setGenInfo({
+      ...genInfo,
+      fname: genInfo.fname.trim(),
+      lname: genInfo.lname.trim(),
+    });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
   }
@@ -103,6 +108,12 @@ function General({
             required={true}
             readOnly={!isEditable}
           />
+          {(changed.lname && genErrors.lname && (
+            <span className={wrapper.ERR_MSG}>{genErrors.lname}</span>
+          )) ||
+            (hasSubmit && genErrors.lname && (
+              <span className={wrapper.ERR_MSG}>{genErrors.lname}</span>
+            ))}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>

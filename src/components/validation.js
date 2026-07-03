@@ -22,8 +22,10 @@ function validateEndDate(start, end) {
 function validateGeneralForm(genInfo) {
   const errors = {};
   const fnameErr = validateName("First name", genInfo.fname.trim());
+  const lnameErr = validateName("Last name", genInfo.lname.trim());
 
   if (fnameErr) errors.fname = fnameErr;
+  if (lnameErr) errors.lname = lnameErr;
 
   return errors;
 }
