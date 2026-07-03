@@ -115,9 +115,14 @@ function Education({
     const isValid = educInfo.every(
       (item) => Object.keys(validateEducationForm(item)).length === 0,
     );
-    setHasSubmit(true);
-    console.log(isValid);
-    if (!isValid) return;
+
+    if (!isValid) {
+      setHasSubmit(true);
+      return;
+    }
+    if (hasSubmit) {
+      setHasSubmit(false);
+    }
     setIsEditable(false);
     setDisplayedEducExp(educInfo);
   };
