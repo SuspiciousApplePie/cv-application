@@ -1,7 +1,9 @@
 import { formHeader, wrapper, educLevel } from "./constant.js";
+import { validateEducationForm } from "./validation.js";
 import { format, parse } from "date-fns";
 import "./Education.css";
 import "./global.css";
+import { useState } from "react";
 
 function EducationExp(
   schoolName = "",
@@ -25,6 +27,8 @@ function Education({
     setEducInfo(newEducInfo);
   };
 
+  const [hasSubmit, setHasSubmit] = useState(false);
+
   const renderEducInfo = () => {
     if (educInfo.length) {
       return educInfo.map((educItem) => {
@@ -38,6 +42,7 @@ function Education({
             editEndDate={editEndDate}
             deleteEducInfo={deleteEducInfo}
             isEditable={isEditable}
+            hasSubmit={hasSubmit}
           />
         );
       });
@@ -107,6 +112,12 @@ function Education({
 
   const editEducationForm = () => setIsEditable(true);
   const saveEducationForm = () => {
+    const isValid = educInfo.every(
+      (item) => Object.keys(validateEducationForm(item)).length === 0,
+    );
+    setHasSubmit(true);
+    console.log(isValid);
+    if (!isValid) return;
     setIsEditable(false);
     setDisplayedEducExp(educInfo);
   };
@@ -121,6 +132,7 @@ function Education({
           e.preventDefault();
           saveEducationForm();
         }}
+        noValidate
       >
         {renderEducInfo()}
         <div className={wrapper.BTN_CONTROL}>
@@ -149,7 +161,10 @@ function EducationForm({
   editEndDate,
   deleteEducInfo,
   isEditable,
+  hasSubmit,
 }) {
+  const educInfoError = validateEducationForm(educInfo);
+  const [touched, setTouched] = useState({});
   return (
     <>
       <div className={wrapper.FORM_CONTROL}>
@@ -160,11 +175,20 @@ function EducationForm({
           id={`school: ${educInfo.id}`}
           value={educInfo.schoolName}
           onChange={(e) => {
+            if (!touched.schoolNameInput) {
+              setTouched({ ...touched, schoolNameInput: true });
+            }
             editSchoolName(e.target.value, educInfo.id);
           }}
           required
           readOnly={!isEditable}
         />
+        {(touched.schoolNameInput && educInfoError.schoolName && (
+          <span className={wrapper.ERR_MSG}>{educInfoError.schoolName}</span>
+        )) ||
+          (hasSubmit && educInfoError.schoolName && (
+            <span className={wrapper.ERR_MSG}>{educInfoError.schoolName}</span>
+          ))}
       </div>
 
       <div className={wrapper.FORM_CONTROL}>
