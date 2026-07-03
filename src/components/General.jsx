@@ -39,7 +39,6 @@ function General({
   }
 
   function setNewEmail(e) {
-    setChange({ ...changed, email: true });
     const newEmail = { ...genInfo, email_add: e.target.value };
     setGenInfo(newEmail);
   }
@@ -129,6 +128,9 @@ function General({
             id={formData.EMAIL_ADDRESS}
             value={genInfo.email_add}
             onChange={setNewEmail}
+            onBlur={() => {
+              setChange({ ...changed, email: true });
+            }}
             required={true}
             readOnly={!isEditable}
           />
