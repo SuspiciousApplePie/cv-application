@@ -27,6 +27,7 @@ const educLevel = {
 
 const regExp = {
   EMAIL: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+  CONTACT: /^\+?[0-9]\d{7,14}$/,
 };
 
 export { formHeader, wrapper, educLevel, regExp };

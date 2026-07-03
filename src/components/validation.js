@@ -27,15 +27,26 @@ function validateEmail(email) {
     return "Invalid email format. Please enter a valid email format (eg. name@example.com";
 }
 
+function validateContact(contact) {
+  if (contact.length < 7 && contact.length > 0)
+    return "Contact number is too short. Contact number must be at least 7 digit long";
+  else if (contact.length > 14)
+    return "Contact number is too long. Max is 14 digits";
+  else if (!regExp.CONTACT.test(contact) && contact.length !== 0)
+    return "Please enter a valid contact number";
+}
+
 function validateGeneralForm(genInfo) {
   const errors = {};
   const fnameErr = validateName("First name", genInfo.fname.trim());
   const lnameErr = validateName("Last name", genInfo.lname.trim());
   const emailErr = validateEmail(genInfo.email_add.trim());
+  const contactErr = validateContact(genInfo.contact.trim());
 
   if (fnameErr) errors.fname = fnameErr;
   if (lnameErr) errors.lname = lnameErr;
   if (emailErr) errors.email = emailErr;
+  if (contactErr) errors.contact = contactErr;
 
   return errors;
 }

@@ -51,6 +51,7 @@ function General({
 
   function saveGeneralInformation(e) {
     e.preventDefault();
+    setChange({ ...changed, contact: true });
     const isValid = Object.keys(genErrors).length === 0;
     if (!isValid) {
       setHasSubmit(true);
@@ -150,6 +151,12 @@ function General({
             required={true}
             readOnly={!isEditable}
           />
+          {(changed.contact && genErrors.contact && (
+            <span className={wrapper.ERR_MSG}>{genErrors.contact}</span>
+          )) ||
+            (hasSubmit && genErrors.contact && (
+              <span className={wrapper.ERR_MSG}>{genErrors.contact}</span>
+            ))}
         </div>
 
         <div className={wrapper.BTN_CONTROL}>

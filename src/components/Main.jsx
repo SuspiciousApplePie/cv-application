@@ -36,7 +36,9 @@ function Main() {
               {displayedGenInfo.fname} {displayedGenInfo.lname}
             </h2>
             <address>Email: {displayedGenInfo.email_add}</address>
-            <address>Contact: {displayedGenInfo.contact}</address>
+            {displayedGenInfo.contact && (
+              <address>Contact: {displayedGenInfo.contact}</address>
+            )}
           </section>
         </div>
       );
