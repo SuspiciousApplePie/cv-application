@@ -23,6 +23,9 @@ function Education({
 }) {
   const setNewEducInfo = (e) => {
     e.preventDefault();
+    if (hasSubmit) {
+      setHasSubmit(false);
+    }
     const newEducInfo = [...educInfo, EducationExp()];
     setEducInfo(newEducInfo);
   };
