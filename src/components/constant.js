@@ -25,4 +25,8 @@ const educLevel = {
   BACHELOR: "Bachelor",
 };
 
-export { formHeader, wrapper, educLevel };
+const regExp = {
+  EMAIL: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+};
+
+export { formHeader, wrapper, educLevel, regExp };

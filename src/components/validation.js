@@ -1,4 +1,5 @@
 import { isAfter } from "date-fns";
+import { regExp } from "./constant";
 
 function validateName(type, name) {
   if (name.length === 0) {
@@ -19,13 +20,22 @@ function validateEndDate(start, end) {
   if (isAfter(start, end)) return "Start date must be before End date";
 }
 
+function validateEmail(email) {
+  const requiredErr = requiredField(email, "Email is required");
+  if (requiredErr) return requiredErr;
+  else if (!regExp.EMAIL.test(email))
+    return "Invalid email format. Please enter a valid email format (eg. name@example.com";
+}
+
 function validateGeneralForm(genInfo) {
   const errors = {};
   const fnameErr = validateName("First name", genInfo.fname.trim());
   const lnameErr = validateName("Last name", genInfo.lname.trim());
+  const emailErr = validateEmail(genInfo.email_add.trim());
 
   if (fnameErr) errors.fname = fnameErr;
   if (lnameErr) errors.lname = lnameErr;
+  if (emailErr) errors.email = emailErr;
 
   return errors;
 }

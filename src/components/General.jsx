@@ -39,6 +39,7 @@ function General({
   }
 
   function setNewEmail(e) {
+    setChange({ ...changed, email: true });
     const newEmail = { ...genInfo, email_add: e.target.value };
     setGenInfo(newEmail);
   }
@@ -62,6 +63,7 @@ function General({
       ...genInfo,
       fname: genInfo.fname.trim(),
       lname: genInfo.lname.trim(),
+      email_add: genInfo.email_add.trim(),
     });
     setIsEditable(false);
     setDisplayedGenInfo(genInfo);
@@ -119,14 +121,22 @@ function General({
         <div className={wrapper.FORM_CONTROL}>
           <label htmlFor={formData.EMAIL_ADDRESS}>Email</label>
           <input
-            type={formType.EMAIL}
+            type={formType.TEXT}
             name={formData.EMAIL_ADDRESS}
+            inputMode={formType.EMAIL}
+            autoComplete={formType.EMAIL}
             id={formData.EMAIL_ADDRESS}
             value={genInfo.email_add}
             onChange={setNewEmail}
             required={true}
             readOnly={!isEditable}
           />
+          {(changed.email && genErrors.email && (
+            <span className={wrapper.ERR_MSG}>{genErrors.email}</span>
+          )) ||
+            (hasSubmit && genErrors.email && (
+              <span className={wrapper.ERR_MSG}>{genErrors.email}</span>
+            ))}
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
