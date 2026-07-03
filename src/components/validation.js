@@ -22,6 +22,11 @@ function validateEndDate(start, end) {
 function validateEducationForm(educInfo) {
   const errors = {};
   const schoolNameError = validateName("School name", educInfo.schoolName);
+
+  const educLevelError = requiredField(
+    educInfo.level,
+    "Education level is required",
+  );
   const startDateError = requiredField(
     educInfo.startDate,
     "Start date is required",
@@ -29,6 +34,7 @@ function validateEducationForm(educInfo) {
   const endDateError = validateEndDate(educInfo.startDate, educInfo.endDate);
 
   if (schoolNameError) errors.schoolName = schoolNameError;
+  if (educLevelError) errors.educLevel = educLevelError;
   if (startDateError) errors.startDate = startDateError;
   if (endDateError) errors.endDate = endDateError;
 

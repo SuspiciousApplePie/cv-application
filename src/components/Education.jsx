@@ -202,6 +202,9 @@ function EducationForm({
           name="level"
           id={`level-${educInfo.id}`}
           onChange={(e) => {
+            if (!touched.educLevel) {
+              setTouched({ ...touched, educLevel: true });
+            }
             editSchoolLevel(e.target.value, educInfo.id);
           }}
           value={educInfo.level}
@@ -214,6 +217,12 @@ function EducationForm({
           <option value={educLevel.HIGH_SCHOOL}>High School</option>
           <option value={educLevel.BACHELOR}>Bachelor</option>
         </select>
+        {(touched.educLevel && educInfoError.educLevel && (
+          <span className={wrapper.ERR_MSG}>{educInfoError.educLevel}</span>
+        )) ||
+          (hasSubmit && educInfoError.educLevel && (
+            <span className={wrapper.ERR_MSG}>{educInfoError.educLevel}</span>
+          ))}
       </div>
 
       <div className={wrapper.FORM_CONTROL}>
