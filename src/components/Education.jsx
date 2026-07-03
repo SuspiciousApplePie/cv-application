@@ -228,11 +228,21 @@ function EducationForm({
               : ""
           }
           onChange={(e) => {
+            if (!touched.startDate) {
+              setTouched({ ...touched, startDate: true });
+            }
             editStartDate(e.target.value, educInfo.id);
           }}
           required
           readOnly={!isEditable}
         />
+        {(touched.startDate && educInfoError.startDate && (
+          <span className={wrapper.ERR_MSG}>{educInfoError.startDate}</span>
+        )) ||
+          (hasSubmit && educInfoError.startDate && (
+            <span className={wrapper.ERR_MSG}>{educInfoError.startDate}</span>
+          ))}
+
         <label htmlFor={`end-${educInfo.id}`}>End</label>
         <input
           type="month"
@@ -242,11 +252,20 @@ function EducationForm({
             educInfo.endDate !== "" ? format(educInfo.endDate, "yyyy-MM") : ""
           }
           onChange={(e) => {
+            if (!touched.endDate) {
+              setTouched({ ...touched, endDate: true });
+            }
             editEndDate(e.target.value, educInfo.id);
           }}
           required
           readOnly={!isEditable}
         />
+        {(touched.endDate && educInfoError.endDate && (
+          <span className={wrapper.ERR_MSG}>{educInfoError.endDate}</span>
+        )) ||
+          (hasSubmit && educInfoError.endDate && (
+            <span className={wrapper.ERR_MSG}>{educInfoError.endDate}</span>
+          ))}
       </div>
       {isEditable && (
         <div className={wrapper.BTN_CONTROL}>
