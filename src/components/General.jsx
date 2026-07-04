@@ -44,13 +44,13 @@ function General({
   }
 
   function setNewContact(e) {
+    setChange({ ...changed, contact: true });
     const newContact = { ...genInfo, contact: e.target.value };
     setGenInfo(newContact);
   }
 
   function saveGeneralInformation(e) {
     e.preventDefault();
-    setChange({ ...changed, contact: true });
     const isValid = Object.keys(genErrors).length === 0;
     if (!isValid) {
       setHasSubmit(true);
