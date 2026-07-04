@@ -204,11 +204,11 @@ function Practical({
       return;
     }
     const trimmedPractical = practicalExp.map((item) => {
-      if (item.companyName !== item.companyName.trim()) {
-        return { ...item, companyName: item.companyName.trim() };
-      } else {
-        return item;
-      }
+      if (item.companyName !== item.companyName.trim())
+        item.companyName = item.companyName.trim();
+      if (item.positionTitle !== item.companyName.trim())
+        item.positionTitle = item.positionTitle.trim();
+      return item;
     });
 
     setPracticalExp([...trimmedPractical]);
@@ -297,11 +297,18 @@ function PracticalForm({
           id={`pos-title-${practicalExp.id}`}
           value={practicalExp.positionTitle}
           onChange={(e) => {
+            setChanged({ ...changed, positionTitle: true });
             editPositionTitle(e.target.value, practicalExp.id);
           }}
           readOnly={!isEditable}
           required
         />
+        {(changed.positionTitle && errors.positionTitle && (
+          <span className={wrapper.ERR_MSG}>{errors.positionTitle}</span>
+        )) ||
+          (hasSubmit && errors.positionTitle && (
+            <span className={wrapper.ERR_MSG}>{errors.positionTitle}</span>
+          ))}
       </div>
       {isEditable && (
         <div className={`${wrapper.BTN_CONTROL} job-res`}>

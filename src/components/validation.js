@@ -79,8 +79,13 @@ function validatePracticalForm(practical) {
     "Company name",
     practical.companyName.trim(),
   );
+  const posTitleErr = requiredField(
+    practical.positionTitle,
+    "Position title is required",
+  );
 
   if (companyNameErr) errors.companyName = companyNameErr;
+  if (posTitleErr) errors.positionTitle = posTitleErr;
 
   return errors;
 }
