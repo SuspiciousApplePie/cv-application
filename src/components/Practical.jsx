@@ -1,5 +1,7 @@
 import { wrapper, formHeader } from "./constant.js";
 import { format, parse } from "date-fns";
+import { validatePracticalForm } from "./validation.js";
+import { useState } from "react";
 import "./Practical.css";
 import "./global.css";
 
@@ -31,6 +33,7 @@ function Practical({
   setIsEditable,
   setDisplayedPracExp,
 }) {
+  const [hasSubmit, setHasSubmit] = useState(false);
   function addPracticalExp() {
     const newPracticalExp = [...practicalExp, PracticalExp()];
     setPracticalExp(newPracticalExp);
@@ -163,6 +166,7 @@ function Practical({
             editEndDate={editEndDate}
             deletePracticalExp={deletePracticalExp}
             isEditable={isEditable}
+            hasSubmit={hasSubmit}
           />
         );
       });
@@ -191,8 +195,26 @@ function Practical({
   }
 
   function savePracticalForm() {
+    const isValid = practicalExp.every(
+      (item) => Object.keys(validatePracticalForm(item)).length === 0,
+    );
+
+    if (!isValid) {
+      if (!hasSubmit) setHasSubmit(true);
+      return;
+    }
+    const trimmedPractical = practicalExp.map((item) => {
+      if (item.companyName !== item.companyName.trim()) {
+        return { ...item, companyName: item.companyName.trim() };
+      } else {
+        return item;
+      }
+    });
+
+    setPracticalExp([...trimmedPractical]);
     setIsEditable(false);
-    setDisplayedPracExp(practicalExp);
+    if (hasSubmit) setHasSubmit(false);
+    setDisplayedPracExp([...trimmedPractical]);
   }
 
   function editPracticalForm() {
@@ -206,6 +228,7 @@ function Practical({
           e.preventDefault();
           savePracticalForm();
         }}
+        noValidate
       >
         <h2>{formHeader.PRAC}</h2>
         {renderPracticalExp()}
@@ -237,7 +260,11 @@ function PracticalForm({
   editEndDate,
   deletePracticalExp,
   isEditable,
+  hasSubmit,
 }) {
+  const errors = validatePracticalForm(practicalExp);
+  const [changed, setChanged] = useState({});
+
   return (
     <>
       <div className={wrapper.FORM_CONTROL}>
@@ -248,11 +275,18 @@ function PracticalForm({
           id={`com-name-${practicalExp.id}`}
           value={practicalExp.companyName}
           onChange={(e) => {
+            setChanged({ ...changed, companyName: true });
             editCompanyName(e.target.value, practicalExp.id);
           }}
           readOnly={!isEditable}
           required
         />
+        {(changed.companyName && errors.companyName && (
+          <span className={wrapper.ERR_MSG}>{errors.companyName}</span>
+        )) ||
+          (hasSubmit && errors.companyName && (
+            <span className={wrapper.ERR_MSG}>{errors.companyName}</span>
+          ))}
       </div>
 
       <div className={wrapper.FORM_CONTROL}>

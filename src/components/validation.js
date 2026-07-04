@@ -72,4 +72,16 @@ function validateEducationForm(educInfo) {
 
   return errors;
 }
-export { validateEducationForm, validateGeneralForm };
+
+function validatePracticalForm(practical) {
+  const errors = {};
+  const companyNameErr = validateName(
+    "Company name",
+    practical.companyName.trim(),
+  );
+
+  if (companyNameErr) errors.companyName = companyNameErr;
+
+  return errors;
+}
+export { validateEducationForm, validateGeneralForm, validatePracticalForm };
