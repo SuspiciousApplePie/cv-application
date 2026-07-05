@@ -1,4 +1,4 @@
-import { isAfter } from "date-fns";
+import { isAfter, format } from "date-fns";
 import { regExp } from "./constant";
 
 function validateName(type, name) {
@@ -15,9 +15,18 @@ function requiredField(value, errMsg) {
   if (value === "") return errMsg;
 }
 
+function validateDateOutOfRange(date) {
+  if (date !== "") {
+    if (isAfter(date, new Date()))
+      return `Date must be before ${format(new Date(), "MMMM yyyy")}`;
+  }
+}
+
 function validateEndDate(start, end) {
+  const outOfRange = validateDateOutOfRange(end);
   if (end === "") return "End date is required";
   if (isAfter(start, end)) return "Start date must be before End date";
+  if (outOfRange) return outOfRange;
 }
 
 function validateEmail(email) {
@@ -66,11 +75,13 @@ function validateEducationForm(educInfo) {
     educInfo.startDate,
     "Start date is required",
   );
+  const startDateOutOfRange = validateDateOutOfRange(educInfo.startDate);
   const endDateError = validateEndDate(educInfo.startDate, educInfo.endDate);
 
   if (schoolNameError) errors.schoolName = schoolNameError;
   if (educLevelError) errors.educLevel = educLevelError;
   if (startDateError) errors.startDate = startDateError;
+  if (startDateOutOfRange) errors.startDate = startDateOutOfRange;
   if (endDateError) errors.endDate = endDateError;
 
   return errors;
@@ -90,6 +101,7 @@ function validatePracticalForm(practical) {
     practical.startDate,
     "Start date is required",
   );
+  const startDateOutOfRange = validateDateOutOfRange(practical.startDate);
   const endDateErr = validateEndDate(practical.startDate, practical.endDate);
 
   if (companyNameErr) errors.companyName = companyNameErr;
@@ -101,6 +113,7 @@ function validatePracticalForm(practical) {
     if (jobResErr) errors.jobRes = jobResErr;
   }
   if (startDateErr) errors.startDate = startDateErr;
+  if (startDateOutOfRange) errors.startDate = startDateOutOfRange;
   if (endDateErr) errors.endDate = endDateErr;
   return errors;
 }
