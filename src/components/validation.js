@@ -86,7 +86,28 @@ function validatePracticalForm(practical) {
 
   if (companyNameErr) errors.companyName = companyNameErr;
   if (posTitleErr) errors.positionTitle = posTitleErr;
+  if (practical.jobResponsibility.length !== 0) {
+    const jobResErr = practical.jobResponsibility.every(
+      (item) => Object.keys(validateJobResponsibility(item)).length !== 0,
+    );
+    if (jobResErr) errors.jobRes = jobResErr;
+  }
 
   return errors;
 }
-export { validateEducationForm, validateGeneralForm, validatePracticalForm };
+
+function validateJobResponsibility(job) {
+  const errors = {};
+  const requiredErr = requiredField(
+    job.jobDesc.trim(),
+    "Job responsibility field cannot be empty",
+  );
+  if (requiredErr) errors.jobRes = requiredErr;
+  return errors;
+}
+export {
+  validateEducationForm,
+  validateGeneralForm,
+  validatePracticalForm,
+  validateJobResponsibility,
+};

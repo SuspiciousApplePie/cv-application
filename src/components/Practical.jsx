@@ -1,6 +1,9 @@
 import { wrapper, formHeader } from "./constant.js";
 import { format, parse } from "date-fns";
-import { validatePracticalForm } from "./validation.js";
+import {
+  validatePracticalForm,
+  validateJobResponsibility,
+} from "./validation.js";
 import { useState } from "react";
 import "./Practical.css";
 import "./global.css";
@@ -186,6 +189,7 @@ function Practical({
             deleteJobResponsibilities={deleteJobResponsibilities}
             editJobResponsibilities={editJobResponsibilities}
             isEditable={isEditable}
+            hasSubmit={hasSubmit}
           />
         );
       });
@@ -208,6 +212,11 @@ function Practical({
         item.companyName = item.companyName.trim();
       if (item.positionTitle !== item.companyName.trim())
         item.positionTitle = item.positionTitle.trim();
+      item.jobResponsibility = item.jobResponsibility.map((jobItem) => {
+        if (jobItem.jobDesc.trim() !== jobItem.jobDesc)
+          return { ...jobItem, jobDesc: jobItem.jobDesc.trim() };
+        else return jobItem;
+      });
       return item;
     });
 
@@ -382,7 +391,10 @@ function JobResponsibilities({
   deleteJobResponsibilities,
   editJobResponsibilities,
   isEditable,
+  hasSubmit,
 }) {
+  const [changed, setChanged] = useState(false);
+  const errors = validateJobResponsibility(job);
   return (
     <div className={wrapper.JOB_WRAPPER}>
       <div className={wrapper.FORM_CONTROL}>
@@ -393,12 +405,19 @@ function JobResponsibilities({
           id={`job-res-${job.id}`}
           value={job.jobDesc}
           onChange={(e) => {
+            setChanged(true);
             editJobResponsibilities(practicalExpId, job.id, e.target.value);
           }}
           required
           readOnly={!isEditable}
         />
       </div>
+      {(changed && errors.jobRes && (
+        <span className={wrapper.ERR_MSG}>{errors.jobRes}</span>
+      )) ||
+        (hasSubmit && errors.jobRes && (
+          <span className={wrapper.ERR_MSG}>{errors.jobRes}</span>
+        ))}
       {isEditable && (
         <div className={wrapper.BTN_CONTROL}>
           <button
