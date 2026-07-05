@@ -126,8 +126,14 @@ function Education({
     if (hasSubmit) {
       setHasSubmit(false);
     }
+    const trimmedEduc = educInfo.map((item) => {
+      if (item.schoolName !== item.schoolName.trim())
+        return { ...item, schoolName: item.schoolName.trim() };
+      else return item;
+    });
     setIsEditable(false);
-    setDisplayedEducExp(educInfo);
+    setEducInfo([...trimmedEduc]);
+    setDisplayedEducExp(trimmedEduc);
   };
 
   return (

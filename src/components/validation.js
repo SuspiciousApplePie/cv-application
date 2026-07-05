@@ -53,7 +53,10 @@ function validateGeneralForm(genInfo) {
 
 function validateEducationForm(educInfo) {
   const errors = {};
-  const schoolNameError = validateName("School name", educInfo.schoolName);
+  const schoolNameError = validateName(
+    "School name",
+    educInfo.schoolName.trim(),
+  );
 
   const educLevelError = requiredField(
     educInfo.level,
