@@ -370,11 +370,18 @@ function PracticalForm({
               : ""
           }
           onChange={(e) => {
+            setChanged({ ...changed, endDate: true });
             editEndDate(e.target.value, practicalExp.id);
           }}
           required
           readOnly={!isEditable}
         />
+        {(changed.endDate && errors.endDate && (
+          <span className={wrapper.ERR_MSG}>{errors.endDate}</span>
+        )) ||
+          (hasSubmit && errors.endDate && (
+            <span className={wrapper.ERR_MSG}>{errors.endDate}</span>
+          ))}
       </div>
       {isEditable && (
         <div className={wrapper.BTN_CONTROL}>

@@ -87,6 +87,7 @@ function validatePracticalForm(practical) {
     practical.startDate,
     "Start date is required",
   );
+  const endDateErr = validateEndDate(practical.startDate, practical.endDate);
 
   if (companyNameErr) errors.companyName = companyNameErr;
   if (posTitleErr) errors.positionTitle = posTitleErr;
@@ -97,6 +98,7 @@ function validatePracticalForm(practical) {
     if (jobResErr) errors.jobRes = jobResErr;
   }
   if (startDateErr) errors.startDate = startDateErr;
+  if (endDateErr) errors.endDate = endDateErr;
   return errors;
 }
 
