@@ -83,6 +83,10 @@ function validatePracticalForm(practical) {
     practical.positionTitle,
     "Position title is required",
   );
+  const startDateErr = requiredField(
+    practical.startDate,
+    "Start date is required",
+  );
 
   if (companyNameErr) errors.companyName = companyNameErr;
   if (posTitleErr) errors.positionTitle = posTitleErr;
@@ -92,7 +96,7 @@ function validatePracticalForm(practical) {
     );
     if (jobResErr) errors.jobRes = jobResErr;
   }
-
+  if (startDateErr) errors.startDate = startDateErr;
   return errors;
 }
 

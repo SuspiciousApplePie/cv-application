@@ -345,11 +345,18 @@ function PracticalForm({
               : ""
           }
           onChange={(e) => {
+            setChanged({ ...changed, startDate: true });
             editStartDate(e.target.value, practicalExp.id);
           }}
           required
           readOnly={!isEditable}
         />
+        {(changed.startDate && errors.startDate && (
+          <span className={wrapper.ERR_MSG}>{errors.startDate}</span>
+        )) ||
+          (hasSubmit && errors.startDate && (
+            <span className={wrapper.ERR_MSG}>{errors.startDate}</span>
+          ))}
       </div>
       <div className={wrapper.FORM_CONTROL}>
         <label htmlFor={`end-${practicalExp.id}`}>End</label>
