@@ -17,6 +17,10 @@ const wrapper = {
   ERR_MSG: "error-message",
 };
 
+const button = {
+  DRAWER: "drawer-btn",
+};
+
 const educLevel = {
   SELECT: "",
   PRIMARY: "Primary",
@@ -30,4 +34,4 @@ const regExp = {
   CONTACT: /^\+?[0-9]\d{7,14}$/,
 };
 
-export { formHeader, wrapper, educLevel, regExp };
+export { formHeader, wrapper, educLevel, regExp, button };
