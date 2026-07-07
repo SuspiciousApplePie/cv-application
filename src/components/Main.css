@@ -10,9 +10,6 @@ main::selection {
   color: var(--font-color-1);
 }
 
-main:has(.form-wrapper) {
-  transition: grid-template-columns 0.5s ease;
-}
 main > * {
   padding: var(--space-3);
 }
@@ -41,9 +38,15 @@ main .cv-wrapper {
   will-change: transform;
 }
 
+.form-wrapper.hide > div {
+  visibility: hidden;
+  will-change: auto;
+}
+
 .form-wrapper > div {
   border-right: 2px solid var(--main-color);
   overflow-y: auto;
+  transition: visibility 0.8s ease;
 }
 
 .form-wrapper .drawer-btn {
