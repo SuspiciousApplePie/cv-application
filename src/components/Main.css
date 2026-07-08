@@ -3,8 +3,12 @@ main {
   position: relative;
   grid-template-columns: repeat(2, 1fr);
   font-family: "Source Sans 3", sans-serif;
+  transition: background-color 0.4s ease;
 }
 
+.dark-mode {
+  background-color: var(--font-color-2);
+}
 main::selection {
   background-color: var(--main-color);
   color: var(--font-color-1);
@@ -102,6 +106,26 @@ select {
   border-bottom: 1px solid var(--main-color);
   color: var(--main-color);
   background-color: var(--font-color-1);
+  transition: background-color 0.4s ease;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--font-color-1) inset;
+  box-shadow: 0 0 0px 1000px var(--font-color-1) inset;
+  -webkit-text-fill-color: var(--main-color);
+  transition: all 0.4s ease;
+}
+
+.dark-mode input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--font-color-2) inset;
+  box-shadow: 0 0 0px 1000px var(--font-color-2) inset;
+  transition: all 0.4s ease;
+}
+
+.dark-mode input,
+.dark-mode select {
+  background-color: var(--font-color-2);
+  transition: background-color 0.4s ease;
 }
 
 input:focus,

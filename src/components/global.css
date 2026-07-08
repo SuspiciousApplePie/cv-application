@@ -14,6 +14,9 @@
   --main-color: #9966cc;
   --font-color-1: #f1f2f3;
   --font-color-2: #333;
+
+  --icon-sm: 1rem;
+  --icon-md: 2rem;
 }
 
 body {

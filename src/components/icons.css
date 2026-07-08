@@ -1,0 +1,16 @@
+svg {
+  height: var(--icon-md);
+  width: var(--icon-md);
+  pointer-events: none;
+}
+
+path {
+  fill: var(--font-color-1);
+}
+
+button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

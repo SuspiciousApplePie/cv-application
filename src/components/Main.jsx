@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { wrapper, button } from "./constant.js";
 import "./Main.css";
 
-function Main() {
+function Main({ darkMode }) {
   const [genInfo, setGenInfo] = useState({
     fname: "",
     lname: "",
@@ -108,7 +108,7 @@ function Main() {
   };
 
   return (
-    <main>
+    <main className={darkMode && "dark-mode"}>
       <div
         className={
           (isFormVisible && wrapper.FORM_WRAPPER) ||
