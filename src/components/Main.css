@@ -59,6 +59,8 @@ main .cv-wrapper {
   border-radius: 0 var(--space-2) var(--space-2) 0;
   color: var(--font-color-1);
   padding: var(--space-4) var(--space-1);
+  display: flex;
+  justify-content: center;
 }
 
 .general-wrapper,
@@ -148,4 +150,9 @@ select:disabled {
 .error-message {
   color: red;
   font-size: var(--font-sm);
+}
+
+svg {
+  height: calc(var(--icon-sm) - 4px);
+  width: calc(var(--icon-sm) - 4px);
 }

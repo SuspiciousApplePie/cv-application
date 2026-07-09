@@ -6,6 +6,7 @@ import { Display } from "./Display.jsx";
 import { format } from "date-fns";
 import { wrapper, button } from "./constant.js";
 import "./Main.css";
+import "./icons.css";
 
 function Main({ darkMode }) {
   const [genInfo, setGenInfo] = useState({
@@ -144,7 +145,9 @@ function Main({ darkMode }) {
             onClick={() => setIsFormVisible(false)}
             type="button"
           >
-            X
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+              <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+            </svg>
           </button>
         )}
         {!isFormVisible && (
@@ -153,7 +156,9 @@ function Main({ darkMode }) {
             onClick={() => setIsFormVisible(true)}
             type="button"
           >
-            O
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+              <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+            </svg>
           </button>
         )}
       </div>
