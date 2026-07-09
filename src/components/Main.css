@@ -148,7 +148,7 @@ select:disabled {
 }
 
 .error-message {
-  color: red;
+  color: var(--error-red);
   font-size: var(--font-sm);
 }
 
