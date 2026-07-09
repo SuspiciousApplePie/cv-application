@@ -37,3 +37,8 @@ header button {
 .light-mode-icon path {
   fill: var(--sun-yellow);
 }
+
+header svg {
+  height: var(--icon-md);
+  width: var(--icon-md);
+}
