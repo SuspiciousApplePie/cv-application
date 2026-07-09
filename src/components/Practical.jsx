@@ -277,7 +277,9 @@ function PracticalForm({
   return (
     <>
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`com-name-${practicalExp.id}`}>Company Name</label>
+        <label htmlFor={`com-name-${practicalExp.id}`}>
+          Company Name <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="text"
           name=""
@@ -299,7 +301,9 @@ function PracticalForm({
       </div>
 
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`pos-title-${practicalExp.id}`}>Position Title</label>
+        <label htmlFor={`pos-title-${practicalExp.id}`}>
+          Position Title <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="text"
           name=""
@@ -334,7 +338,9 @@ function PracticalForm({
       )}
       {renderJobResponsibilities(practicalExp)}
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`start-${practicalExp.id}`}>Start</label>
+        <label htmlFor={`start-${practicalExp.id}`}>
+          Start <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="month"
           name=""
@@ -359,7 +365,9 @@ function PracticalForm({
           ))}
       </div>
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`end-${practicalExp.id}`}>End</label>
+        <label htmlFor={`end-${practicalExp.id}`}>
+          End <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="month"
           name=""
@@ -412,7 +420,9 @@ function JobResponsibilities({
   return (
     <div className={wrapper.JOB_WRAPPER}>
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`job-res-${job.id}`}>Job Responsibility</label>
+        <label htmlFor={`job-res-${job.id}`}>
+          Job Responsibility <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="text"
           name=""

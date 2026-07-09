@@ -147,7 +147,8 @@ select:disabled {
   opacity: 1;
 }
 
-.error-message {
+.error-message,
+.required-sign {
   color: var(--error-red);
   font-size: var(--font-sm);
 }

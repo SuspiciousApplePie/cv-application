@@ -182,7 +182,9 @@ function EducationForm({
   return (
     <>
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`school: ${educInfo.id}`}>School Name</label>
+        <label htmlFor={`school: ${educInfo.id}`}>
+          School Name <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="text"
           name="school"
@@ -206,7 +208,9 @@ function EducationForm({
       </div>
 
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`level-${educInfo.id}`}>Level</label>
+        <label htmlFor={`level-${educInfo.id}`}>
+          Level <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <select
           name="level"
           id={`level-${educInfo.id}`}
@@ -235,7 +239,9 @@ function EducationForm({
       </div>
 
       <div className={wrapper.FORM_CONTROL}>
-        <label htmlFor={`start-${educInfo.id}`}>Start</label>
+        <label htmlFor={`start-${educInfo.id}`}>
+          Start <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="month"
           name="start-date"
@@ -261,7 +267,9 @@ function EducationForm({
             <span className={wrapper.ERR_MSG}>{educInfoError.startDate}</span>
           ))}
 
-        <label htmlFor={`end-${educInfo.id}`}>End</label>
+        <label htmlFor={`end-${educInfo.id}`}>
+          End <span className={wrapper.REQ_MARK}>*</span>
+        </label>
         <input
           type="month"
           name="end-date"

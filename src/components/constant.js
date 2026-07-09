@@ -15,6 +15,7 @@ const wrapper = {
   CV_WRAPPER: "cv-wrapper",
   PAPER: "paper",
   ERR_MSG: "error-message",
+  REQ_MARK: "required-sign",
 };
 
 const button = {

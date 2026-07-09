@@ -81,7 +81,9 @@ function General({
         noValidate
       >
         <div className={wrapper.FORM_CONTROL}>
-          <label htmlFor={formData.FNAME}>First Name</label>
+          <label htmlFor={formData.FNAME}>
+            First Name <span className={wrapper.REQ_MARK}>*</span>
+          </label>
           <input
             type={formType.TEXT}
             name={formData.FNAME}
@@ -100,7 +102,9 @@ function General({
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
-          <label htmlFor={formData.LNAME}>Last Name</label>
+          <label htmlFor={formData.LNAME}>
+            Last Name <span className={wrapper.REQ_MARK}>*</span>
+          </label>
           <input
             type={formType.TEXT}
             name={formData.LNAME}
@@ -119,7 +123,9 @@ function General({
         </div>
 
         <div className={wrapper.FORM_CONTROL}>
-          <label htmlFor={formData.EMAIL_ADDRESS}>Email</label>
+          <label htmlFor={formData.EMAIL_ADDRESS}>
+            Email <span className={wrapper.REQ_MARK}>*</span>
+          </label>
           <input
             type={formType.TEXT}
             name={formData.EMAIL_ADDRESS}
