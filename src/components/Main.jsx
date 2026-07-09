@@ -108,7 +108,7 @@ function Main({ darkMode }) {
   };
 
   return (
-    <main className={darkMode && "dark-mode"}>
+    <main className={(darkMode && "dark-mode") || (!darkMode && "")}>
       <div
         className={
           (isFormVisible && wrapper.FORM_WRAPPER) ||

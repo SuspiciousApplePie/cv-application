@@ -5,9 +5,35 @@ header {
   font-size: var(--font-lg);
   font-family: "Source Sans 3", sans-serif;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding-left: var(--space-3);
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+header button {
+  margin-right: var(--space-3);
+  padding: 0;
+}
+
+.dark-mode-icon svg {
+  transform: rotate(-360deg);
+  transition: transform 700ms ease-in-out;
+  will-change: contents;
+}
+
+.dark-mode-icon path {
+  fill: var(--moon-blue);
+}
+
+.light-mode-icon svg {
+  transform: rotate(360deg);
+  transition: transform 1s ease-in-out;
+  will-change: contents;
+}
+
+.light-mode-icon path {
+  fill: var(--sun-yellow);
 }
