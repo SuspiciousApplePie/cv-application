@@ -157,3 +157,25 @@ svg {
   height: calc(var(--icon-sm) - 4px);
   width: calc(var(--icon-sm) - 4px);
 }
+
+@media screen and (max-width: 527px) {
+  :root {
+    font-size: 12px;
+  }
+  main {
+    display: block;
+  }
+
+  main .form-wrapper {
+    position: static;
+  }
+
+  .form-wrapper .drawer-btn {
+    display: none;
+  }
+
+  .form-wrapper > div {
+    border-right-color: transparent;
+    border-bottom: 2px solid var(--main-color);
+  }
+}
