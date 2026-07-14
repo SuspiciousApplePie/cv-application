@@ -167,6 +167,19 @@ main > .toggle-mobile {
   display: none;
 }
 
+.toggle-mobile svg {
+  height: var(--icon-md);
+  width: var(--icon-md);
+}
+
+.toggle-mobile svg path {
+  fill: var(--main-color);
+}
+
+.toggle-mobile:hover svg path {
+  fill: var(--font-color-1);
+}
+
 @media screen and (max-width: 527px) {
   :root {
     font-size: 12px;
