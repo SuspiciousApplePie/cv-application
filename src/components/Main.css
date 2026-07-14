@@ -190,6 +190,7 @@ main > .toggle-mobile {
 
   main .form-wrapper {
     position: static;
+    height: auto;
   }
 
   .form-wrapper .drawer-btn {
