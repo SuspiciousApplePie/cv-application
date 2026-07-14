@@ -1,16 +1,42 @@
-# React + Vite
+# CV Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple cv builder that creates a cv based on form data.
 
-Currently, two official plugins are available:
+## Screenshot:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![App Screenshot](./public/cv-application-ui.png)
 
-## React Compiler
+## Features:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. CV display when saving the form.
+1. Form for General Information, Education, and Work experience.
+1. Form validation.
+1. Dark mode toggle.
+1. Form hide/show toggle.
 
-## Expanding the ESLint configuration
+## What I learned:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. How to utilize `useState` in react for state management.
+1. Familiarize with react structure.
+1. Using Vite for bundling.
+1. How to make react components.
+
+## Tools:
+
+- HTML
+- CSS
+- Javascript
+- React.js
+- Vite
+- Cloudflare
+
+## How to run:
+
+1. Clone the repository.
+1. Run `npm install` in command line.
+1. Run `npm run dev`.
+1. Open the link in your browser.
+
+## Future Improvements:
+
+1. Create a feature that makes the displayed cv downloadable and printable.
