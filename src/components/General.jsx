@@ -1,8 +1,8 @@
 import { formHeader, wrapper } from "./constant.js";
 import { validateGeneralForm } from "./validation.js";
 import { useState } from "react";
-import "./General.css";
 import "./global.css";
+import "./General.css";
 
 function General({
   genInfo,

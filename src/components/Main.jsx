@@ -110,6 +110,18 @@ function Main({ darkMode }) {
 
   return (
     <main className={(darkMode && "dark-mode") || (!darkMode && "")}>
+      <div className="toggle-mobile">
+        {(!isFormVisible && (
+          <button onClick={() => setIsFormVisible(true)} type="button">
+            Open
+          </button>
+        )) ||
+          (isFormVisible && (
+            <button onClick={() => setIsFormVisible(false)} type="button">
+              Close
+            </button>
+          ))}
+      </div>
       <div
         className={
           (isFormVisible && wrapper.FORM_WRAPPER) ||

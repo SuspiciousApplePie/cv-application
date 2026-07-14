@@ -1,14 +1,18 @@
+body:has(.dark-mode) {
+  background-color: var(--font-color-2);
+}
+
+body {
+  transition: background-color 0.4s ease;
+}
+
 main {
   display: grid;
   position: relative;
   grid-template-columns: repeat(2, 1fr);
   font-family: "Source Sans 3", sans-serif;
-  transition: background-color 0.4s ease;
 }
 
-.dark-mode {
-  background-color: var(--font-color-2);
-}
 main::selection {
   background-color: var(--main-color);
   color: var(--font-color-1);
@@ -158,6 +162,11 @@ svg {
   width: calc(var(--icon-sm) - 4px);
 }
 
+main > .toggle-mobile {
+  z-index: 1;
+  display: none;
+}
+
 @media screen and (max-width: 527px) {
   :root {
     font-size: 12px;
@@ -177,5 +186,23 @@ svg {
   .form-wrapper > div {
     border-right-color: transparent;
     border-bottom: 2px solid var(--main-color);
+  }
+
+  .form-wrapper.hide {
+    display: none;
+    position: relative;
+  }
+
+  .cv-wrapper.expand {
+    transform: none;
+  }
+
+  main > .toggle-mobile {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  main > .toggle-mobile button {
+    position: fixed;
   }
 }
